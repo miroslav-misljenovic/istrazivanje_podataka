@@ -1,0 +1,13 @@
+##latex files:
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.bbl
+*.blg
+
+##knime files:
+.project
+.savedWithData
+.artifacts

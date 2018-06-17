@@ -1,0 +1,55 @@
+tourney_id id_turnira string
+tourney_name ime_turnira string
+surface podloga(Grass, Clay, Hard) string
+draw_size broj_igraca_na_turniru numeric
+tourney_level nivo_turnira(Grand Slam, Finals, Masters, Tour Series, Challenger) string
+tourney_date datum_pocetka_turnira numeric
+match_num broj_meca_na_turniru numeric
+
+winner_id id_pobednika numeric
+winner_seed nosilac_na_turniru numeric
+winner_entry ulaznica(WildCard, Qualified, LuckyLoser, ProtectedRanking) string
+winner_name ime_pobednika string
+winner_hand ruka_pobednika string
+winner_ht visina_pobednika numeric
+winner_ioc zemlja_porekla_pobednika string
+winner_age godine_pobednika numeric
+winner_rank atp_rang_pobednika numeric
+winner_rank_points atp_poeni_pobednika numeric
+
+loser_id id_gubitnika numeric
+loser_seed nosilac_na_turniru numeric
+loser_entry ulaznica(WildCard, Qualified, LuckyLoser, ProtectedRanking) string
+loser_name ime_gubitnika string
+loser_hand ruka_gubitnika string
+loser_ht visina_gubitnika numeric
+loser_ioc zemlja_porekla_gubitnika string
+loser_age godine_gubitnika numeric
+loser_rank atp_rang_gubitnika numeric
+loser_rank_points atp_poeni_gubitnika numeric
+
+score rezultat dateTime
+
+best_of max_moguci_broj_setova numeric
+round runda(Round of 16, Quaterfinal...) string
+minutes trajanje_meca_u_minutima numeric
+
+w_ace broj_asova_pobednika numeric
+w_df broj_duplih_gresaka_pobednika numeric
+w_svpt broj_poena_dobijenih_na_servis_pobednika numeric
+w_1stIn broj_ubacenih_prvih_servisa_pobednika numeric
+w_1stWon broj_poena_dobijenih_nakon_ubacenog_prvog_servisa_pobednika numeric
+w_2ndWon broj_poena_dobijenih_nakon_ubacenog_drugog_servisa_pobednika numeric numeric
+w_SvGms broj_gemova_u_kojima_je_servirao_pobednik numeric
+w_bpSaved broj_spasenih_brejk_lopti_pobednika numeric
+w_bpFaced broj_izgubljenih_gemova_posle_brejka_pobednika numeric
+
+l_ace broj_asova_gubitnika numeric
+l_df broj_duplih_gresaka_gubitnika numeric
+l_svpt broj_poena_dobijenih_na_servis_gubitnika numeric
+l_1stIn broj_ubacenih_prvih_servisa_gubitnika numeric
+l_1stWon broj_poena_dobijenih_nakon_ubacenog_prvog_servisa_gubitnika numeric
+l_2ndWon broj_poena_dobijenih_nakon_ubacenog_drugog_servisa_gubitnika numeric numeric
+l_SvGms broj_gemova_u_kojima_je_servirao_gubitnik numeric
+l_bpSaved broj_spasenih_brejk_lopti_gubitnika numeric
+l_bpFaced broj_izgubljenih_gemova_posle_brejka_gubitnika numeric

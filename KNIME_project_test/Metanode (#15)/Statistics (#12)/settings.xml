@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.knime.org/2008/09/XMLConfig" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.knime.org/2008/09/XMLConfig http://www.knime.org/XMLConfig_2008_09.xsd" key="settings.xml">
+<entry key="node_file" type="xstring" value="settings.xml"/>
+<config key="flow_stack"/>
+<config key="internal_node_subsettings">
+<entry key="memory_policy" type="xstring" value="CacheSmallInMemory"/>
+</config>
+<config key="model">
+<config key="compute_median_Internals">
+<entry key="SettingsModelID" type="xstring" value="SMID_boolean"/>
+<entry key="EnabledStatus" type="xboolean" value="true"/>
+</config>
+<entry key="compute_median" type="xboolean" value="false"/>
+<config key="num_nominal-values_Internals">
+<entry key="SettingsModelID" type="xstring" value="SMID_integer"/>
+<entry key="EnabledStatus" type="xboolean" value="true"/>
+</config>
+<entry key="num_nominal-values" type="xint" value="20"/>
+<config key="num_nominal-values_output_Internals">
+<entry key="SettingsModelID" type="xstring" value="SMID_integer"/>
+<entry key="EnabledStatus" type="xboolean" value="true"/>
+</config>
+<entry key="num_nominal-values_output" type="xint" value="1000"/>
+<config key="filter_nominal_columns_Internals">
+<entry key="SettingsModelID" type="xstring" value="SMID_columnfilter"/>
+<entry key="EnabledStatus" type="xboolean" value="true"/>
+</config>
+<config key="filter_nominal_columns">
+<entry key="filter-type" type="xstring" value="STANDARD"/>
+<config key="included_names">
+<entry key="array-size" type="xint" value="47"/>
+<entry key="0" type="xstring" value="tourney_id"/>
+<entry key="1" type="xstring" value="tourney_name"/>
+<entry key="2" type="xstring" value="surface"/>
+<entry key="3" type="xstring" value="draw_size"/>
+<entry key="4" type="xstring" value="tourney_level"/>
+<entry key="5" type="xstring" value="tourney_date"/>
+<entry key="6" type="xstring" value="match_num"/>
+<entry key="7" type="xstring" value="winner_id"/>
+<entry key="8" type="xstring" value="winner_seed"/>
+<entry key="9" type="xstring" value="winner_entry"/>
+<entry key="10" type="xstring" value="winner_name"/>
+<entry key="11" type="xstring" value="winner_hand"/>
+<entry key="12" type="xstring" value="winner_ht"/>
+<entry key="13" type="xstring" value="winner_ioc"/>
+<entry key="14" type="xstring" value="winner_rank"/>
+<entry key="15" type="xstring" value="winner_rank_points"/>
+<entry key="16" type="xstring" value="loser_id"/>
+<entry key="17" type="xstring" value="loser_seed"/>
+<entry key="18" type="xstring" value="loser_entry"/>
+<entry key="19" type="xstring" value="loser_name"/>
+<entry key="20" type="xstring" value="loser_hand"/>
+<entry key="21" type="xstring" value="loser_ht"/>
+<entry key="22" type="xstring" value="loser_ioc"/>
+<entry key="23" type="xstring" value="loser_rank"/>
+<entry key="24" type="xstring" value="loser_rank_points"/>
+<entry key="25" type="xstring" value="score"/>
+<entry key="26" type="xstring" value="best_of"/>
+<entry key="27" type="xstring" value="round"/>
+<entry key="28" type="xstring" value="minutes"/>
+<entry key="29" type="xstring" value="w_ace"/>
+<entry key="30" type="xstring" value="w_df"/>
+<entry key="31" type="xstring" value="w_svpt"/>
+<entry key="32" type="xstring" value="w_1stIn"/>
+<entry key="33" type="xstring" value="w_1stWon"/>
+<entry key="34" type="xstring" value="w_2ndWon"/>
+<entry key="35" type="xstring" value="w_SvGms"/>
+<entry key="36" type="xstring" value="w_bpSaved"/>
+<entry key="37" type="xstring" value="w_bpFaced"/>
+<entry key="38" type="xstring" value="l_ace"/>
+<entry key="39" type="xstring" value="l_df"/>
+<entry key="40" type="xstring" value="l_svpt"/>
+<entry key="41" type="xstring" value="l_1stIn"/>
+<entry key="42" type="xstring" value="l_1stWon"/>
+<entry key="43" type="xstring" value="l_2ndWon"/>
+<entry key="44" type="xstring" value="l_SvGms"/>
+<entry key="45" type="xstring" value="l_bpSaved"/>
+<entry key="46" type="xstring" value="l_bpFaced"/>
+</config>
+<config key="excluded_names">
+<entry key="array-size" type="xint" value="2"/>
+<entry key="0" type="xstring" value="winner_age"/>
+<entry key="1" type="xstring" value="loser_age"/>
+</config>
+<entry key="enforce_option" type="xstring" value="EnforceInclusion"/>
+<config key="name_pattern">
+<entry key="pattern" type="xstring" value=""/>
+<entry key="type" type="xstring" value="Wildcard"/>
+<entry key="caseSensitive" type="xboolean" value="true"/>
+</config>
+<config key="datatype">
+<config key="typelist"/>
+</config>
+</config>
+<config key="image format_Internals">
+<entry key="SettingsModelID" type="xstring" value="SMID_string"/>
+<entry key="EnabledStatus" type="xboolean" value="true"/>
+</config>
+<entry key="image format" type="xstring" value="SVG"/>
+<config key="histogram width_Internals">
+<entry key="SettingsModelID" type="xstring" value="SMID_integer"/>
+<entry key="EnabledStatus" type="xboolean" value="true"/>
+</config>
+<entry key="histogram width" type="xint" value="200"/>
+<config key="histogram height_Internals">
+<entry key="SettingsModelID" type="xstring" value="SMID_integer"/>
+<entry key="EnabledStatus" type="xboolean" value="true"/>
+</config>
+<entry key="histogram height" type="xint" value="100"/>
+<config key="enable HiLite_Internals">
+<entry key="SettingsModelID" type="xstring" value="SMID_boolean"/>
+<entry key="EnabledStatus" type="xboolean" value="true"/>
+</config>
+<entry key="enable HiLite" type="xboolean" value="false"/>
+<config key="show min max_Internals">
+<entry key="SettingsModelID" type="xstring" value="SMID_boolean"/>
+<entry key="EnabledStatus" type="xboolean" value="true"/>
+</config>
+<entry key="show min max" type="xboolean" value="true"/>
+</config>
+<entry key="customDescription" type="xstring" isnull="true" value=""/>
+<entry key="state" type="xstring" value="IDLE"/>
+<entry key="factory" type="xstring" value="org.knime.base.node.stats.viz.extended.ExtendedStatisticsNodeFactory"/>
+<entry key="node-name" type="xstring" value="Statistics"/>
+<entry key="node-bundle-name" type="xstring" value="KNIME Statistic Nodes"/>
+<entry key="node-bundle-symbolic-name" type="xstring" value="org.knime.stats"/>
+<entry key="node-bundle-vendor" type="xstring" value="KNIME AG, Zurich, Switzerland"/>
+<entry key="node-bundle-version" type="xstring" value="3.5.0.v201711131423"/>
+<entry key="node-feature-name" type="xstring" value="KNIME Core"/>
+<entry key="node-feature-symbolic-name" type="xstring" value="org.knime.features.base.feature.group"/>
+<entry key="node-feature-vendor" type="xstring" value="KNIME AG, Zurich, Switzerland"/>
+<entry key="node-feature-version" type="xstring" value="3.5.1.v201712211547"/>
+<config key="factory_settings"/>
+<entry key="name" type="xstring" value="Statistics"/>
+<entry key="hasContent" type="xboolean" value="false"/>
+<entry key="isInactive" type="xboolean" value="false"/>
+<config key="ports">
+<config key="port_1">
+<entry key="index" type="xint" value="1"/>
+<entry key="port_dir_location" type="xstring" isnull="true" value=""/>
+</config>
+<config key="port_2">
+<entry key="index" type="xint" value="2"/>
+<entry key="port_dir_location" type="xstring" isnull="true" value=""/>
+</config>
+<config key="port_3">
+<entry key="index" type="xint" value="3"/>
+<entry key="port_dir_location" type="xstring" isnull="true" value=""/>
+</config>
+</config>
+<config key="filestores">
+<entry key="file_store_location" type="xstring" isnull="true" value=""/>
+<entry key="file_store_id" type="xstring" isnull="true" value=""/>
+</config>
+</config>
