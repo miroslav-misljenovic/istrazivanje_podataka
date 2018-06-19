@@ -13,4 +13,4 @@
 *.artifacts
 
 ##SPSS:
-*.str~
+*.str-
