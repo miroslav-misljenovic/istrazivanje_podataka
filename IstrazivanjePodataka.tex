@@ -7,6 +7,8 @@
 \usepackage[T2A]{fontenc} % enable Cyrillic fonts
 \usepackage[utf8x]{inputenc} % make weird characters work
 \usepackage{graphicx}
+\usepackage{float}
+\usepackage[section]{placeins}
 \usepackage[english,serbian]{babel}
 %\usepackage[english,serbianc]{babel} %ukljuciti babel sa ovim opcijama, umesto gornjim, ukoliko se koristi cirilica
 
@@ -21,7 +23,7 @@
 \title{ATP 2000-2017\\ \small{Seminarski rad u okviru kursa\\Istraživanje podataka\\ Matematički fakultet}}
 
 \author{Marija Mijailović\\ mi14199@alas.matf.bg.ac.rs\\Miroslav Mišljenović\\mr12260@alas.matf.bg.ac.rs}
-\date{maj 2018.}
+\date{jun 2018.}
 \maketitle
 
 \abstract{
@@ -35,7 +37,7 @@ U ovom radu analizirali smo skup podataka ˝ATP - rezultati turnira od 2000-2017
 \section{Uvod}
 \label{sec:uvod}
 
-Skup podataka ATP mečeva podeljen je u 17 zasebnih .csv fajlova, i svaki od njih prikazuje individualne statistike za svaki turnir u toku te godine.
+Skup podataka ATP mečeva podeljen je u 17 zasebnih .csv fajlova i svaki od njih prikazuje individualne statistike za svaki turnir u toku te godine.
 
 %Na Slici \ref{fig:picture1}(b) prikazana je jednostavna mrežna toppologija, sastavljena od 4 rutera označenih sa A, B, C i D. Ruteri B i C su povezani sa spoljašnjom mrežom Ext, a ruter D je povezan sa dve unutrašnje mreže N1 i N2. U nastavku, pojam klase saobraćaja se odnosi na skup paketa (npr. paketi namenjeni N1) koji se obrađuju prema zahtevima. 
 %\begin{figure}[h!]
@@ -62,14 +64,14 @@ U tabeli \ref{table:turnir} prikazani su podaci o turniru.
 			surface & podloga(Grass, Clay, Hard) \\
 			tourney\_level & nivo turnira(Grand Slam, Finals, Masters, Tour Series, Challenger) \\ 
 			round & runda(Round of 16, Quarterfinal...) \\
-			minutes & trajanje meca u minutima \\
+			minutes & trajanje meča u minutima \\
 			\hline
 		\end{tabular}
 	\caption{Podaci o turnirima}
 	\label{table:turnir}
 \end{table}
 
-U tabeli \ref{table:pobednici} prikazani su podaci o pobedniku na pojedinačnom meču.
+U tabeli \ref{table:pobednici} prikazani su podaci o pobedniku meča.
 \begin{table}
 		\begin{tabular}{ | c | c | } 
 			\hline
@@ -81,16 +83,16 @@ U tabeli \ref{table:pobednici} prikazani su podaci o pobedniku na pojedinačnom 
 			winner\_ht & visina pobednika \\
 			winner\_ioc & zemlja porekla pobednika \\
 			winner\_age & godine pobednika \\
-			winner\_rank & atp rang pobednika \\
-			winner\_rank\_points & atp poeni pobednika \\
+			winner\_rank & ATP rang pobednika \\
+			winner\_rank\_points & ATP poeni pobednika \\
 			w\_ace & broj asova pobednika \\
-			w\_df & broj duplih gresaka pobednika \\ 
+			w\_df & broj duplih grešaka pobednika \\ 
 			w\_svpt & broj poena dobijenih na servis pobednika \\
-			w\_1stIn & broj ubacenih prvih servisa pobednika \\
-			w\_1stWon & broj poena dobijenih nakon ubacenog prvog servisa pobednika \\
-			w\_2ndWon & broj poena dobijenih nakon ubacenog drugog servisa pobednika \\
+			w\_1stIn & broj ubačenih prvih servisa pobednika \\
+			w\_1stWon & broj poena dobijenih nakon ubačenog prvog servisa pobednika \\
+			w\_2ndWon & broj poena dobijenih nakon ubačenog drugog servisa pobednika \\
 			w\_SvGms & broj gemova u kojima je servirao pobednik \\
-			w\_bpSaved & broj spasenih brejk lopti pobednika \\
+			w\_bpSaved & broj spašenih brejk lopti pobednika \\
 			w\_bpFaced & broj izgubljenih gemova posle brejka pobednika \\ 
 			\hline
 		\end{tabular}
@@ -106,20 +108,20 @@ U tabeli \ref{table:gubitnici} prikazani su podaci o gubitniku meča.
 			\hline
 			loser\_seed & nosilac na turniru \\
 			loser\_entry & ulaznica(WildCard, Qualified, LuckyLoser, ProtectedRanking) \\
-			loser\_name & ime pobednika \\
-			loser\_ht & visina pobednika \\
-			loser\_ioc & zemlja porekla pobednika \\
-			loser\_age & godine pobednika \\
-			loser\_rank & atp rang pobednika \\
-			loser\_rank\_points & atp poeni pobednika \\ 
+			loser\_name & ime gubitnika \\
+			loser\_ht & visina gubitnika \\
+			loser\_ioc & zemlja porekla gubitnika \\
+			loser\_age & godine gubitnika \\
+			loser\_rank & ATP rang gubitnika \\
+			loser\_rank\_points & ATP poeni gubitnika \\ 
 			l\_ace & broj asova gubitnika \\
-			l\_df & broj duplih gubitnika \\
+			l\_df & broj duplih grešaka gubitnika \\
 			l\_svpt & broj poena dobijenih na servis gubitnika \\
-			l\_1stIn & broj ubacenih prvih servisa gubitnika \\
-			l\_1stWon & broj poena dobijenih nakon ubacenog prvog servisa gubitnika \\
-			l\_2ndWon & broj poena dobijenih nakon ubacenog drugog servisa gubitnika \\
+			l\_1stIn & broj ubačenih prvih servisa gubitnika \\
+			l\_1stWon & broj poena dobijenih nakon ubačenog prvog servisa gubitnika \\
+			l\_2ndWon & broj poena dobijenih nakon ubačenog drugog servisa gubitnika \\
 			l\_SvGms & broj gemova u kojima je servirao gubitnik \\
-			l\_bpSaved & broj spasenih brejk lopti gubitnika \\
+			l\_bpSaved & broj spašenih brejk lopti gubitnika \\
 			l\_bpFaced & broj izgubljenih gemova posle brejka gubitnika \\
 			\hline
 		\end{tabular}
@@ -127,9 +129,64 @@ U tabeli \ref{table:gubitnici} prikazani su podaci o gubitniku meča.
 	\label{table:gubitnici}
 \end{table}
 
-S obzirom na veliki broj raspoloživih godina, prvo smo se detaljno upoznali sa podacima i šta nam koja godina pruža i u koji su za svaku godinu najzanimljiviji atributi. U zavisnosti od toga smo po potrebama metoda koristili različite godine, ali svuda smo se ograničili na četiri maksimalno.
+S obzirom na veliki broj raspoloživih godina, prvo smo se detaljno upoznali sa podacima i šta nam koja godina pruža i koji su najzanimljiviji atributi za svaku godinu. U zavisnosti od toga smo, po potrebama metoda, koristili različite godine, ali svuda smo se ograničili na četiri maksimalno.
 
 \section{Pravila pridruživanja}
+
+Pravila pridruživanja smo obradili u programskom alatu KNIME (slika \ref{fig:knime}).
+Odlučili smo se za 2009. godinu, jer su rezultati reprezentativniji u odnosu na ostale godine.
+
+\begin{figure}[h!]
+	\begin{center}
+		\includegraphics[scale=0.37]{KNIME_project/PravilaPridruzivanja/knime.png}
+	\end{center}
+	\caption{KNIME implementacija}
+	\label{fig:knime}
+\end{figure}
+
+Na slikama \ref{fig:histogram} i \ref{fig:parallel} grafički su prikazani rezultati za sedam
+tenisera koji su imali prosečno najviše asova po meču na kome su pobedili. Izabrali smo četiri parametra za svakog igrača:
+broj asova pobednika, broj dobijenih poena na servis pobednika, procenat ubačenog prvog servisa pobednika i
+broj osvojenih poena nakon ubačenog prvog servisa pobednika. Na histogramu i grafiku paralelnih koordinata 
+mogu se videti i uporediti rezultati.
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[scale=0.25]{KNIME_project/PravilaPridruzivanja/histogram2009}
+	\end{center}
+	\caption{Histogram}
+	\label{fig:histogram}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[scale=0.30]{KNIME_project/PravilaPridruzivanja/parallel2009}
+	\end{center}
+	\caption{Paralelne koordinate}
+	\label{fig:parallel}
+\end{figure}
+
+Iznenađenje je pojavljivanje Amera Delića u prvih sedam, jer je to
+autorima nepoznat igrač. Uvidom u podatke, utvrđeno je da je on te godine odigrao samo osam mečeva,
+a pobedio je samo tri puta (što je kriterijum po kome je birano najboljih sedam). \\
+
+U tri kategorije smo podelili sledeća četiri atributa: broj asova pobednika, broj duplih servis grešaka pobednika,
+broj osvojenih poena nakon ubačenog prvog servisa pobednika, broj spašenih brejk lopti pobednika.
+Na slici \ref{fig:rule_learner} se mogu videti pravila pridruživanja dobijena na osnovu te kategorizacije,
+sortirani po Lift meri. Za pouzdanost smo uzeli vrednost 0.4, a za minimalnu podršku vrednost 0.15.
+Analizirali smo podatke za sve godine i rezultati su prilično uniformni. Za 2009. godinu je dobijena druga najveća
+Lift mera (1.36) i odnosi se na pravilo [ACE 2, WON 2, DF 1] -> [BPS 1].
+U 2004. godini smo dobili najveću vrednost Lift mere (1.441) za pravilo [BPS 1, ACE 1, DF 1] -> [WON 1].
+
+
+\begin{figure}[h!]
+	\begin{center}
+		\includegraphics[scale=0.6]{KNIME_project/PravilaPridruzivanja/rule_learner_2009}
+	\end{center}
+	\caption{Pravila pridruživanja}
+	\label{fig:rule_learner}
+\end{figure}
+
 
 
 
