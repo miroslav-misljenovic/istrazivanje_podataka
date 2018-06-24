@@ -7,9 +7,12 @@
 \usepackage[T2A]{fontenc} % enable Cyrillic fonts
 \usepackage[utf8x]{inputenc} % make weird characters work
 \usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
 \usepackage{float}
 \usepackage[section]{placeins}
 \usepackage[english,serbian]{babel}
+\usepackage{color}
 %\usepackage[english,serbianc]{babel} %ukljuciti babel sa ovim opcijama, umesto gornjim, ukoliko se koristi cirilica
 
 \usepackage[unicode]{hyperref}
@@ -27,7 +30,7 @@
 \maketitle
 
 \abstract{
-U ovom radu analizirali smo skup podataka ˝ATP - rezultati turnira od 2000-2017˝. Obradili smo pravila pridruživanja, klasterovanje, klasifikaciju i predstavili sve navedene metode odgovarajućom vizualizacijom. Skup podataka je preuzet sa https://www.kaggle.com/gmadevs/atp-matches-dataset.
+U ovom radu analizirali smo skup podataka ˝ATP - rezultati turnira od 2000-2017˝. Obradili smo pravila pridruživanja, klasterovanje, klasifikaciju i predstavili sve navedene metode odgovarajućom vizualizacijom. Skup podataka je preuzet sa \url{https://www.kaggle.com/gmadevs/atp-matches-dataset}.
 }
 
 \tableofcontents
@@ -40,7 +43,7 @@ U ovom radu analizirali smo skup podataka ˝ATP - rezultati turnira od 2000-2017
 Skup podataka ATP mečeva podeljen je u 17 zasebnih .csv fajlova i svaki od njih prikazuje individualne statistike za svaki turnir u toku te godine.
 
 %Na Slici \ref{fig:picture1}(b) prikazana je jednostavna mrežna toppologija, sastavljena od 4 rutera označenih sa A, B, C i D. Ruteri B i C su povezani sa spoljašnjom mrežom Ext, a ruter D je povezan sa dve unutrašnje mreže N1 i N2. U nastavku, pojam klase saobraćaja se odnosi na skup paketa (npr. paketi namenjeni N1) koji se obrađuju prema zahtevima. 
-%\begin{figure}[h!]
+%\begin{figure}[H]
 %	\begin{center}
 %		\includegraphics[scale=0.50]{resources/picture1.png}
 %	\end{center}
@@ -136,7 +139,7 @@ S obzirom na veliki broj raspoloživih godina, prvo smo se detaljno upoznali sa 
 Pravila pridruživanja smo obradili u programskom alatu KNIME (slika \ref{fig:knime}).
 Odlučili smo se za 2009. godinu, jer su rezultati reprezentativniji u odnosu na ostale godine.
 
-\begin{figure}[h!]
+\begin{figure}[H]
 	\begin{center}
 		\includegraphics[scale=0.37]{KNIME_project/PravilaPridruzivanja/knime.png}
 	\end{center}
@@ -179,7 +182,7 @@ Lift mera (1.36) i odnosi se na pravilo [ACE 2, WON 2, DF 1] -> [BPS 1].
 U 2004. godini smo dobili najveću vrednost Lift mere (1.441) za pravilo [BPS 1, ACE 1, DF 1] -> [WON 1].
 
 
-\begin{figure}[h!]
+\begin{figure}[H]
 	\begin{center}
 		\includegraphics[scale=0.6]{KNIME_project/PravilaPridruzivanja/rule_learner_2009}
 	\end{center}
@@ -187,198 +190,276 @@ U 2004. godini smo dobili najveću vrednost Lift mere (1.441) za pravilo [BPS 1,
 	\label{fig:rule_learner}
 \end{figure}
 
-
-
-
 \section{Klasterovanje}
+
+Sto se tiče klasterovanja, s obzirom da podaci po godinama dosta osciliraju, odlučili smo da klasterovanje izvršimo za više godina. Izabrali smo 2003, 2011 i 2017 godinu. Pre svega nas je zanimla zavisnost broja godina pobednika i broj asova pobednika. Prvo smo obradili nedostajuće vrednosti. Klasterovanje smo obradili u alatima SPSS i KNIME (slike \ref{fig:SPSS_CvoroviKlasterovanje} i \ref{fig:KNIME_CvoroviKlasterovanje} ). 
+
+\subsection{SPSS}
+ 
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[scale=0.60]{Klasterovanje/SPSS_Cvorovi.png}
+	\end{center}
+	\caption{SPSS klasterovanje}
+	\label{fig:SPSS_CvoroviKlasterovanje}
+\end{figure}
+
+U SPSS-u pomoću siluete smo pratili kako nam se kvalitet klastervanja razlikuje u zavisnosti od broja klastera. 
+\textit{Kohonen} algoritam nam je za broj klastere 3-5 davao ˝osrednji˝ kvalitet klasterovanja, pa ga nismo detaljno razmatrali. {\color{red} (Podseti me da probam sa nekim drugim ulaznim argumentima za Kohonena i da napisem ovde za koje smo probali.)} S druge strane, \textit{K-Means} algoritam nam je davao dosta šarenolike ocene klastera po godinama. 2003. godina nam je za 4 i 5 klastera pokazala kvalitet klasterovanja  ˝dobar˝, uz važnost atributa \textit{w\_age = 1} i \textit{w\_ace = 1}. U 2011. godini nam je za 5 klastera silueta pokazivala kvalitet ˝osrednji˝, promenivši broj klastera na 4 silueta je prešla malo u ˝dobar˝. Takodje i sa 4 klastera i sa 5 klastera važnost atributa \textit{w\_age = 1} i \textit{w\_ace = 1}. Rezultati za 2017.godinu za 4 klastera pokazuju kvalitet ˝osrednji˝, promenivši broj klastera na 5 silueta je na granici ˝osrednji˝-˝dobar˝, međutim važnost atributa sa 4 klastera je \textit{w\_age = 1}, \textit{w\_ace = 0.77} , dok je sa 5 klastera \textit{w\_ace} opao na 0.46. Ipak smose dlucili da stavimo 5 klastera za 2017 godinu. Konačno, odlučili smo se za broj i kvalitet klastera koji su prikazani na slici \ref{Siluete}.
+
+\begin{figure}[H]
+	\begin{subfigure}[h]{0.45\textwidth}
+		\begin{center}
+			\includegraphics[scale=0.50]{Klasterovanje/Model_KMeans2003_Silhouette.png}
+		\end{center}
+		\caption{2003.godina}
+		\label{fig:SPSS_Silueta2003}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[h]{0.45\textwidth}
+		\begin{center}
+			\includegraphics[scale=0.50]{Klasterovanje/Model_KMeans2011_Silhouette.png}
+		\end{center}
+		\caption{2011.godina}
+		\label{fig:SPSS_Silueta2011}
+	\end{subfigure}
+
+	\vspace{1cm}
+	\begin{subfigure}[h]{\textwidth}
+		\begin{center}
+			\includegraphics[scale=0.50]{Klasterovanje/Model_KMeans2017_Silhouette.png}
+		\end{center}
+		\caption{2017.godina}
+		\label{fig:SPSS_Silueta2017}
+	\end{subfigure}
+
+	\caption{Kvalitet klasterovanja}
+	\label{Siluete}
+\end{figure}
+
+Kao što možemo da vidimo na slici \ref{ModeliKlastera}. U sve tri godine su dobijeni interesantni podaci. Na primer, u 2003. godini najstariji igrači su nam sa slabijim prosekom asova, dok u 2011. i 2017. godini imamo dva klastara sa prosekom godina oko ~30, u jednom klasteru nam je broj asova mali, dok je u drugom najveći. Ovo nam je govorilo da možda imamo neki autlajer koji je uticao na kreiranje dodatnog klastera. Odlučili smo da proveremo šta ćemo dobiti u KNIME-u.
+ 
+\begin{figure}[H]
+	\begin{subfigure}[h]{\textwidth}
+		\begin{center}
+			\includegraphics[scale=0.50]{Klasterovanje/Model_KMeans2003.png}
+		\end{center}
+		\caption{2003.godina}
+		\label{fig:SPSS_Model2003}
+	\end{subfigure}
+
+	\vspace{1cm}
+	\begin{subfigure}[h]{\textwidth}
+		\begin{center}
+			\includegraphics[scale=0.50]{Klasterovanje/Model_KMeans2011.png}
+		\end{center}
+		\caption{2011.godina}
+		\label{fig:SPSS_Model2011}
+	\end{subfigure}
+
+	\vspace{1cm}
+	\begin{subfigure}[h]{\textwidth}
+		\begin{center}
+			\includegraphics[scale=0.50]{Klasterovanje/Model_KMeans2017.png}
+		\end{center}
+		\caption{2017.godina}
+		\label{fig:SPSS_Model2017}
+	\end{subfigure}
+
+	\caption{Modeli klastera}
+	\label{ModeliKlastera}
+\end{figure}
+
+\subsection{KNIME}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[scale=0.60]{Klasterovanje/KNIME_Cvorovi.png}
+	\end{center}
+	\caption{KNIME klasterovanje}
+	\label{fig:KNIME_CvoroviKlasterovanje}
+\end{figure}
+
+Postojao je jedan igrač kome je bio nepoznat broj godina, njega smo obrisali. U situacija kada je broj asova bio nepoznat, stavljali smo vrednost na nula. Nakon toga smo grupisali podatke po igračima, kako bi za svakog igrača dobili prosek koliko je imao asova tokom godine. Da bi iskoristili \textit{K-Means} algoritam morali smo još da normalizujemo podatke kako bi broj godina i broj asova imali isti uticaj na računanje rastojanja među instancama.  
+
+U KNIME-u smo se opredelili da klasterovanje vršimo sa istim broj klastera kao što smo činili u SPSS-u. Dobijeni klasteri su prikazani na slici \ref{KlasteriScatterPlot}.
+
+\begin{figure}[H]
+	\begin{subfigure}[h]{\textwidth}
+		\begin{center}
+			\includegraphics[scale=0.40]{Klasterovanje/ScatterPlot_KMeans2003.png}
+		\end{center}
+		\caption{2003.godina}
+		\label{fig:KNIME_ScatterPlot2003}
+	\end{subfigure}
+	
+	\vspace{0.5cm}
+	\begin{subfigure}[h]{\textwidth}
+		\begin{center}
+			\includegraphics[scale=0.40]{Klasterovanje/ScatterPlot_KMeans2011.png}
+		\end{center}
+		\caption{2011.godina}
+		\label{KNIME_ScatterPlot2011}
+	\end{subfigure}
+	
+	\vspace{0.5cm}
+	\begin{subfigure}[h]{\textwidth}
+		\begin{center}
+			\includegraphics[scale=0.40]{Klasterovanje/ScatterPlot_KMeans2017.png}
+		\end{center}
+		\caption{2017.godina}
+		\label{KNIME_ScatterPlot2017}
+	\end{subfigure}
+	
+	\caption{Klasteri}
+	\label{KlasteriScatterPlot}
+\end{figure}
+
+Možemo primetiti da stvarno postoje autlajeri koji su uticali na to da se naprave novi klasteri. Igrači koji predstavljaju autlajere su dati na slici \ref{fig:IgraciAutlajeri}. 
+
+\begin{figure}[H]
+	\begin{subfigure}[h]{\textwidth}
+		\begin{center}
+			\includegraphics[scale=0.40]{Klasterovanje/FredericNiemeyer2003Outlier.png}
+		\end{center}
+		\caption{2003.godina}
+		\label{fig:Autlajer2003}
+	\end{subfigure}
+	
+	\vspace{0.5cm}
+	\begin{subfigure}[h]{\textwidth}
+		\begin{center}
+			\includegraphics[scale=0.40]{Klasterovanje/FritzWolmarans2011Outlier.png}
+		\end{center}
+		\caption{2011.godina}
+		\label{fig:Autlajer2011}
+	\end{subfigure}
+	
+	\vspace{0.5cm}
+	\begin{subfigure}[h]{\textwidth}
+		\begin{center}
+			\includegraphics[scale=0.40]{Klasterovanje/IvoKarlovic2017Outlier.png}
+		\end{center}
+		\caption{2017.godina}
+		\label{fig:Autlajer2011}
+	\end{subfigure}
+	
+	\caption{Klasteri}
+	\label{fig:IgraciAutlajeri}
+\end{figure} 
+
+Najinteresantiji je definitivno Ivo Karlović, koji je na meču Autralian Open-a protiv Orasia Zebaljosa postigao 75 asova. Međutim treba imati na umu da je ukupan broj mečeva koje je odigrao na ovom turniru je 4. Još moramo napomenuti, kako je skup objavljen 2017., dosta turnira nije još uvek upisano, samim tim ni potpuni, trenutni skup ima samo podatke sa turnira do sredine jula. {\color{red} proveriti do kad ima statistika (Ovo smo mi lupili :P)}  
 
 \section{Klasifikacija}
 
-%Predikat se naziva ekzistencijalan ako se pojavljuje samo u telima pravila (desna strana pravila), inače (ako se pojavljuje bar jednom u glavi pravila) naziva se intenzivan. Skup egzistencijalnih i intenzivnih predikata programa P označava se $ edb(P) $ i $ idb(P) $, respektivno.
-%
-%%Datalog program P je slojevit ako se njegova pravila mogu podeliti u slojeve $ P\_{1},. . . , P\_{n} $ tako da ako se predikat p pojavio kao pozitivan (negativan) literal u telu pravila u $ P\_{i} $, tada sva pravila sa p u njihovim glavama su u sloju $ P\_{j} $ sa $ j  \leq  i (j  \le  i) $. Slojevitost obezbeđuje da se predikati koji se pojavljuju kao negativni literali u potpunosti definišu u nižim slojevima.
-%%
-%%Sintaksno proširujemo Datalog sa agregatnim funkcijama kao što su $ min $ i $ max $. 
-%%	
-%%\textbf{Semantika}. Neka je $  A = \{p(t) \mid t  \subseteq Vals \} $ označava skup svih tačaka (tj. slobodnih promenljivih) atoma. Kompletna rešetka $ (P (A),  \subseteq ,  \bigcap , \bigcup , \emptyset , A) $ delimično oddređuje skup interpretacije $ P(A) $.
-%%
-%%Data zamena $ \sigma \in  Vars \rightarrow  Vals $ mapira promenljive do na vriednos. Dat atom a, možemo da napišemo $ \sigma(a) $ za atom koji dobijen zamenom
-%%promenljive u $ a $ prema $ \sigma $ npr., $ \sigma (p(X)) $ vraća atom $ p (\sigma (X)) $.
-%%Operator posledica $ TP \in P(A) \rightarrow P(A) $ za program P je definisan kao:\\
-%%
-%%	\hspace{1.5cm} $ TP (A) = A \bigcup \{\sigma(a) | a \leftarrow l1. . . ln \in P, \forall li \in l. A \models  \sigma(li)\} $\\
-%%	
-%%gde je $ A \models \sigma(a) $ ako $ \sigma(a) \in A $ i $ A \models  \sigma(\neg a) $ ako  $ \sigma(a) \in A $.
-%%
-%%Ulaz za P je skup atoma konstruisan korišćenjem ekzistencijalnih predikata. Neka je P program sa slojevima $ P\_{1},. . . , P\_{n} $ i I biti ulaz za P. Model P za I, označen sa $ [[P]] I $, je $ M\_{n} $, gde je $ M\_{0} = I $ i $  Mi = \bigcap \{A \in fp T\_{Pi} \mid A \subseteq M\_{i-1}\} $ je najmanja fiksna tačka $ T\_{Pi} $ koja je veća od najnižeg sloja modela $ M\_{i-1} $.
-%%
-%\section{Deklarativna mrežna specifikacija}
-%
-%U ovom odeljku prvo opisujemo kako definišemo ponašanje mreže kao Datalog program. Nakon toga, raspravljamo o tome kako su uslovi za rutiranje navedeni kao ograničenja preko fiksne tačke programa Datalog.
-%
-%\subsection{Specifikacija mreža}
-%
-%Kako bi verno opisali ponašanje mreže, modelujemo:
-%\begin{itemize}
-%	\item ponašanje protokola rutiranja i njihovih interakcija 
-%	\item topologiju mreže.
-%\end{itemize}
-%
-%\textbf{Izražavanje protokola u Datalogu}. Formalizujemo pojedinačne protokole rutiranja i kako ruteri kombinuju sledeće ulaze izračunate ovim protokolima kao Datalog program N. Datalog program N izvodi predikat $ Fwd (TC, Router, NextHop) $, koji predstavlja globalno sledeće stanje mreže. Na slici \ref{fig:picture1} (a), na primer, prikazujemo relevantna pravila koja definišu kako se sledeći ulazi izračunati u OSPF-u kombinuju sa onima definisanim putem statičkih ruta. Predikat $ Route(TC, Router, NextHop, Proto) $ snima sledeće ulaze OSPF-a i statičkih ruta. Glavno Datalog pravilo navodi da ruteri biraju, za svaku klasu saobraćaja TC, sledeći ulaz sa minimalnim administrativnim troškovima (minAD) koji se računa po svim protokolima putem drugog Datalog pravila na slici \ref{fig:picture1}(a). Donja dva pravila definišu predikatsku Route, koja prikuplja sledeće ulaze definisane preko statičkih ruta i izračunatih od strane OSPF-a. Napominjemo da su OSPF rute (predstavljene od strane predikata BestOSPFRoute) definisane dodatnim pravilima Datalog-a koja zauzima ponašanje OSPF protokola.
-%
-%\textbf{Topologija mreže}. Topologija mreže se takođe preuzima preko Datalog pravila u programu N. Modelujemo svaki ruter kao konstantu i koristimo predikate da  predstavljaju topologiju. Na primer, predikat $ SetLink (R1, R2) $ predstavlja da su dva rutera $ R1 $ i $ R2 $ povezana preko puta, i dodajemo pravilo Datalog $ SetLink (R1, R2) \leftarrow true $ koje definiše ovakav put.
-%
-%\subsection{Određivanje zahteva}
-%
-%Određujemo zahteve kao ograničenja prvog reda  bez funkcije u odnosu na predikat Fwd (TC, Router, NextHop), koji definiše sledeće stanje mreže. Pišemo $ A \models \phi $ da označimo da Datalog interperetacija $ A $ zadovoljava $ \phi $. Za ilustraciju, opisujemo kako se mogu navesti uobičajeni zahtevi za rutiranje:
-%
-%	$ Path(TC, R\_{1}, [R\_{1}, R\_{2},..., R\_{n}]) $ (Zahtev putanje): paketi za TC klasu saobraćaja moraju da prate put $ R\_{1}, ..., R\_{n} $. Ovi zahtevi su navedeni kao konjunkcija nad predikatom Fwd.
-%	
-%	$ \forall R\_{1}, R\_{2}. Fwd(TC1, R1, R2) \Rightarrow \neg Fwd(TC2, R1, R2) $ (Izolacija saobraćaja): putanja za dve različite klase saobraćaja TC1 i TC2 ne dele put u istom pravcu. 
-%
-%	$ Reach(TC, R\_{1}, R\_{2}) $ (Dostupnost): paketi za TC klasu saobraćaja mogu da dosegnu ruter R2 od rutera R1. Predikat $ Reach $ predstavlja tranzitivno zatvaranje predikata $ Fwd $ (definisanog preko Datalog pravila).
-%	
-%	$ \forall TC, R . (\neg Reach(TC, R, R))$ (Petlja bez): generički zahtev propisuje da sledeća oblast nema petlje.
-%
-%Složeniji zahtevi, kao što je način upućivanja, mogu se navesti na osnovu ograničenja prvog reda bez funkcija koje pruža SyNET. Dalje, SyNET se može koristiti kao bekend za jezik visokog nivoakoji je lakši za korišćenje od strane mrežnog operatera.
-%
-%\subsection{Konfiguracija mreže}
-%
-%Konfiguracije ulaznih protokola raspoređene na mrežnim ruterima su predstavljenje kao ulazni \textit{edb} predikat za Datalog programe koji formalizuju
-%protokole. Na primer, lokalna konfiguracija OSPF-a za ruter određuje težine puta povezanih sa tim ruterom. Ovo je predstavljeno od \textit{edb} predikata $ SetOSPFEdgeCost (Router, NextHop, Veight) $.
-%
-%Podskup sintetizovanog Datalog ulaza za naš motivacioni primjer je dati na slici \ref{fig:picture1}(d). Ovde \textit{SetAD} definiše administrativne troškove statičkih ruta da budu niži od onog kod OSPF-a (tako da su statični putevi preferiraniji nego sledeći ulaz računat za OSPF). Predikat $ SetStatic (N\_{1}, A, B) $, koji definiše statičku rutu za $ N\_{1} $ od A do B. Predikat $ SetOSPFEdgeCost $ definiše težine putanja.
-%
-%\section{Sinteza ulaza za Datalog}
-%
-%Sada predstavljamo novi iterativni algoritam sinteze ulaza za Datalog. Prvo opisujemo \textit{tok visokog nivoa} algoritma pre nego što pređemo na detalje.\\
-%
-%\textbf{Tok visokog nivoa}. Razmotrite Datalog program sa slojevima $ P\_{1} $, $ P\_{2} $, i $ P\_{3} $, prikazano na Slici \ref{fig:picture3}. Ulazni i izlazni čvorovi sloja $ P\_{i} $ ukazuju da su $ edb $ predikati i,  $ idb $ predikati tog sloja. Na primer, sloj $ P\_{3} $ uzima kao ulaz predikat $ q(\bar{t}) $ i $ r(\bar{t}) $ i izvodi predikat $ s(\bar{t}) $. Naš iterativni algoritam prvo sintetiše ulaz $ I\_{3} $ za $ P\_{3} $ koje određuje predikati $ q(\bar{t}) $ i $ r(\bar{t}) $ tako da $ P1 \bigcup P2 $ izlazi. Da bi sintetisali takav ulaz za jedan sloj, predstavljamo algoritam koji se zove \textbf{$ S\_{SemiPos} $}, koji se bavi problemom sinteze ulaza za polu-pozitivni Datalog programi, tj. Datalog programe u kojima je negiranje ograničeno $ edb $ predikatima. Nakon sinteze ulaza $ I\_{3} $ za $ P\_{3} $, naš iterativni algoritam sintetiše ulaz $ I\_{2} $ za $ P\_{2} $ tako da fiksna tačka $ [[P\_{2}]] I\_{2} $ proizvodi predikate $ r(\bar{t}) $ koji se nalaze u već sintetizovanom ulazu $ I\_{3} $ za $ P\_{3} $. Napominjemo da ovakav iterativni proces može zahtevati bektreking, u slučaju da nema ulaza za $ P\_{2} $ može se proizvesti željeni predikat $ r(\bar{t}) $ sadržani u $ I\_{3} $. Algoritam se prekida kada sintetiše ulazne podatke za sva tri sloja.
-%
-%\begin{figure}[h!]
-%	\begin{center}
-%		\includegraphics[scale=0.50]{resources/picture3.png}
-%	\end{center}
-%	\caption{Datalog program sa slojevima P1, P2 i P3, i protokom predikata između slojeva.}
-%	\label{fig:picture3}
-%\end{figure}
-%
-%U nastavku, prvo predstavljamo algoritam \textbf{$ S\_{SemiPos} $} koji se koristi da se izvrši sinteza ulaza za jedan sloj (što je polu-pozitivan program). Zatim predstavljamo opšti algoritam, nazvan \textbf{$ S\_{Strat} $}, koji iterativno primjenjuje $ S\_{SemiPos} $ za svaki sloj koji sintetiše ulaze za Datalog programe.
-%
-%\subsection{Sinteza ulaza za polu-pozitivan Datalog sa SMT-om}
-%
-%Ključna ideja je da se problem sinteze ulaza svede na zadovoljavanje SMT ograničenja: Dat je polu-pozitivan Datalog program P i ograničenje $ \phi $, kodiramo $ \exists I . [[P]] I \models \phi $ u SMT ograničenju $ \psi $. Ako je $ \psi $ zadovoljavajuće, onda iz modela $ \psi $ možemo izvući ulaz I takav da $ [[P]] I \models \phi $.
-%
-%\begin{figure}[h!]
-%	\begin{center}
-%		\includegraphics[scale=0.50]{resources/SemiPos.png}
-%	\end{center}
-%\end{figure}
-%
-%Algoritam $ S\_{SemiPos}(P,\phi) $, dat u algoritmu 1, prvo se poziva funkcija $ Simplify(\phi) $ koja:
-%\begin{itemize}
-%	\item instancira bilo koji kvantifikator u $ \phi $
-%	\item transformiše rezultat u konjukciju klauzula, gde je svaka klauzula disjunkcija literala
-%\end{itemize}
-%
-%Zatim, algoritam iterativno odvija Datalog pravila, do unapred zadate granice, nazvane $ bound\_{k} $. U svakom koraku for-petlje, algoritam generiše SMT ograničenje koje obuhvata:
-%	\begin{itemize}
-%		\item koji atomi se izvedu nakon k primena P pravila
-%		\item koji atomi nikad nisu izvedeni od strane P-a.
-%	\end{itemize} 
-%SMT ograničenje označeno je sa $ [P]\_{k} $. Algoritam takođe prepisuje pojednostavljeno ograničenje $ \phi\prime $ koristeći funkciju $ Rewrite (\phi\prime, k) $ koja rekurzivno prolazi konjunkcije i disjunkcije u pojednostavljenom ograničenju $ \phi\prime $ i mapira pozitivne literale na
-%predikat $ p\_{k}(t) $ i negativne literale na $ \neg p(t) $:
-%
-%\begin{figure}[h!]
-%	\begin{center}
-%		\includegraphics[scale=0.50]{resources/SemiPos1.png}
-%	\end{center}
-%\end{figure}
-%
-%Ako je ograničenje $ [P]\_{k} \bigwedge \phi\_{k} $ zadovoljivo, onda je ulaz izveden projekcijom interpretacije I koja zadovoljava ograničenje svih predikata $ edb(P) $. Takođe ako postoji ulaz I takav da je $ [[P]] I \models \phi $ i za koji je fiksirana tačka $ [[P]] I $ dostigla manje od graničnih koraka, onda $ S\_{SemiPos}(P,\phi) $ zagarantovano vraća ulaz.
-%
-%%Note that since ∨ and ∧ are monotone, negative literals constitute negative
-%%constraints and positive literals constitute positive constraints.
-%%If the resulting constraint [P ]k ∧ ψk is satisfiable, then an input is derived by projecting the interpretation I that satisfies the constraint over all edb predicates. Note that if there is an input I such that [[P ]]I |= φ and for which the fixed point [[P ]]I is reached in less than boundk steps, then SSemiP os (P, φ) is guaranteed to return an input.
-%
-%\subsection{Iterativna sinteza ulaza za Datalog}
-%
-%\begin{figure}[h!]
-%	\begin{center}
-%		\includegraphics[scale=0.50]{resources/Strat.png}
-%	\end{center}
-%\end{figure}
-%
-%Prikaz algoritma dat je na Slici \ref{fig:strat}. Pretpostavimo bez gubitka opštosti da je ograničenje fiksne tačke $ \phi $ definisano preko predikata koje se pojavljuju u najvišem sloju $ P\_{n} $. Počevši od najvišeg sloja $ P\_{n} $, $ S\_{Strat} $ generiše ulaz $ I\_{n} $ za $ P\_{n} $ tako da $ [[P\_{n}]] I\_{n} \models \phi $. Zatim se iterativno sintetiše ulaz za donje slojeve $ P\_{n-1},. . . , P\_{1} $ koristeći algoritam $ S\_{SemiPos} $. Na kraju, da bi se konstruisao ulaz za P, algoritam kombiniju ulaze sintetizovane za sve slojeve i vraća ulaz I za P.
-%
-%\section{Implementacija i procena}
-%
-%U ovom odeljku predstavljen je SyNET, i krajnja implementacija algoritma sinteze ulaza koji se primjenjuje na mrežni problem sinteze. Zatim se okrećemo oceni SyNET-a na praktičnim topologijama i zahtevima.
-%
-%\subsection{Implementacija}
-%
-%SyNET je implementiran u Python-u i automatski kodira Datalog programe u SMT ograničenjima. Koristi Python API da bi proverio da li su generisana SMT ograničenja zadovoljavajuća i da dobije model.
-%
-%SyNET podržava rutere koji pokreću oba, OSPF i BGP protokola i koji se mogu konfigurisati statičkim rutama. SyNET koristi prirodno razdvajanje protokola:
-%spoljašnje putanje obavlja BGP, dok unutrašnjim rukuju IGP protokoli (OSPF sa statičkim rutama). Pravila Dataloga koja obuhvataju ove protokole i njihove zavisnosti podeljenja su u 8 slojeva. Za većinu topologija i zahteva, Datalog program dostigne fiksnu tačku u roku od 20 iteracija, pa smo fiksirali granice za odvijanje i bektreking na 20.
-%
-%Jednostavna skripta se može koristiti za konvertovanje izlaza iz SzNET-a u bilo koji specifični konfiguracioni format, a zatim ih razviti u rutere. Zaista, za testiranje ispravnosti SyNET-a, primenjuje se mala skriptu za pretvaranje unosa sintetizovanog od strane SyNET-a do Cisco ruter konfiguracije.
-%
-%SyNET podržava dve ključne optimizacije koje poboljšavaju performanse. Prva optimizacija je parcijalna evaluacija: SyNET delimično procenjuje pravila Dataloga sa
-%predikatima čije su istinitosne vrednosti poznate \textit{a priori}. Druga optimizacija predstavlja ograničenja specifična za mrežu: konfigurisali smo SyNET sa generičkim ograničenjima, koja su tačna za sva sledeća stanja, i sa ograničenjima koja se održavaju za bilo koji ulaz u određeni protokol. 
-%
-%\subsection{Eksperimenti}
-%
-%%To investigate SyNET’s performance and scalability, we experimented with differ-
-%%ent: (i) topologies, (ii) requirements; and (iii) protocol combinations. Further to
-%%test correctness, we ran all synthesized configurations on an emulated environ-
-%%ment of Cisco routers [32] and we verified that the forwarding paths computed
-%%match the requirements for each experiment.
-%
-%Kako bismo istražili performanse i skalabilnost SyNET-a, eksperimentirali smo sa različitim:
-%\begin{itemize}
-%	\item topologijama
-%	\item zahtevima
-%	\item kombinacijom protokola.
-%\end{itemize} 
-%Dalje za ispravnost testova, pokreću se sve sintetizovane konfiguracije u simuliranom okruženju Cisco rutera i proverava se da sledeći putevi odgovaraju zahtevima za svaki eksperiment.
-%
-%%Network Topologies. We used network topologies that have between 4 and
-%%64 routers. The 4-router network is our overview example where we considered
-%%the same requirements as those described in Sect. 2. The 9-router network is
-%%Internet2 (see Fig. 5), a US-based network that connects several major universi-
-%%ties and research institutes. The remaining networks are n x n grids.
-%
-%\textbf{Topologija mreže} Koristili smo topologiju mreže koja ima između 4 i 64 rutera. Mreža sa 4 rutera je naš primer opisana u Sekt. 2. Mreža sa 9 rutera je
-%Internet2 (vidi sliku 5), mreža zasnovana na SAD-u koja povezuje nekoliko glavnih univerziteta i istraživačkih instituta. Preostale mreže su $ n \times n $ mreže.
-%
-%%Routing Requirements. For each router and each traffic class, we generate
-%%a routing requirement that defines where the packets for that traffic class must
-%%be forwarded to. We consider 1, 5, and 10 traffic classes. For a topology withrouters and m traffic classes, we thus generate n x m requirements.
-%
-%\textbf{Zahtevi rutiranja} Za svaki ruter i svaku klasu saobraćaja generišemo zahtev za usmeravanje koje definiše gde paket za tu klasu saobraćaja mora biti proslijeđen. Razmatramo 1, 5 i 10 klasa saobraćaja. Za topologiju sa ruterima i m klasa saobraćaja, generišemo $ n \times m $ zahteve.
-%
-%%For topologies with multiple traffic classes, we add one external network
-%%announced by two randomly selected routers. We add requirements to enforce
-%%that all packets destined to the external networks are forwarded to one of the
-%%two routers. This models a scenario where the operator is planning maintenance
-%%downtime for one of the two routers. Further, to show that SyNET synthesizes
-%%configurations with partially defined input and protocol dependencies, we assume
-%%the local BGP preferences are fixed by the network operator and thus SyNET has
-%%to synthesize correct OSPF costs to meet the BGP requirements.
-%
-%Za topologije sa više klasa prometa, dodamo jednu spoljnu mrežu napravljenu od strane dva slučajno izabrana rutera. Dodamo zahteve da svi paketi namenjeni spoljnim mrežama budu prosleđeni jednom od dva rutera. Ovi modeli predstavljaju scenario gde operater planira održavanje za jedan od dva rutera. Dalje, kako bi se pokazalo da SyNET sintetizuje konfiguracije sa delimično definisanim zavisnim ulazima i protokolima, pretpostavljamo da su lokalne pretpostavke BGP-a fiksirane od strane operatora mreže i na taj način SyNET može da sintetiše tačne OSPF troškove kako bi ispunio BGP zahteve.
-%
-%%Protocols. We consider three different combinations of protocols: (i) static routes; (ii)
-%%OSPF and static routes; and (iii) OSPF, BGP, and static routes. The protocol combinations (i) and (ii) ignore requirements for
-%%external networks since only BGP computes routes for them.
-%
-%\textbf{Protokoli} Razmatramo tri različite kombinacije protokola: 
-%	\begin{enumerate}
-%		\item statički putevi
-%		\item OSPF i statički putevi
-%		\item OSPF, BGP i statički putevi
-%	\end{enumerate}
-%Kombinacije protokola 1) i 2) ignorišu zahteve za spoljne mreže, jer jedini BGP obračunava puteve za njih.
+Odlučili smo da nam klase budu podloge terena, a pripadnost svakoj klasi se određuje na osnovu karakteristika gubitnika meča.  {\color{red}{Možda i ovde da probamo da grupišemo prvo po podlogama, pa pripadnost da gađamo na osnovu proseka?}} Kao i kod klasterovanja i ovde smo želeli da vidimo šta se dešava u više godina. S obzirom na to da se su neke podloge dominantnije u odnosu na ostale, godine za klasterovanje smo izabrali koliko je to moguće najravnomernije. Nakon detaljne analize raspodele podloga po turnirima odlučili smo se za 2005, 2008, 2015. godinu. Razlog što smo odabrali baš ove godine jeste polako gubljenje ˝tepiha˝ kao podloge (slika \ref{fig:Podloga}), pa nas je zanimalo kako će ova činjenica uticati na sam proces klasifikacije. 
+
+\begin{figure}[H]
+	\begin{subfigure}[h]{0.37\textwidth}
+		\begin{center}
+			\includegraphics[scale=0.40]{Klasifikacija/HistogramiPodlogaTerena/Graphboard2005.png}
+		\end{center}
+		\caption{2005.godina}
+		\label{fig:Podloga2005}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[h]{0.37\textwidth}
+		\begin{center}
+			\includegraphics[scale=0.40]{Klasifikacija/HistogramiPodlogaTerena/Graphboard2008.png}
+		\end{center}
+		\caption{2008.godina}
+		\label{fig:Podloga2008}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[h]{\textwidth}
+		\begin{center}
+			\includegraphics[scale=0.40]{Klasifikacija/HistogramiPodlogaTerena/Graphboard2015.png}
+		\end{center}
+		\caption{2015.godina}
+		\label{fig:Podloga2015}
+	\end{subfigure}
+	
+	\caption{Podloga terena}
+	\label{fig:Podloga}
+\end{figure} 
+
+Klasifikaciju smo, takođe, obradili u SPSS-u i u KNIME-u. (slike \ref{fig:SPSS_CvoroviKlasifikacija} i \ref{fig:KNIME_CvoroviKlasifikacija} ). 
+
+\subsection{SPSS}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[scale=0.60]{Klasifikacija/C50/SPSS_C50_Surface.png}
+	\end{center}
+	\caption{SPSS klastifikacija}
+	\label{fig:SPSS_CvoroviKlasifikacija}
+\end{figure}
+
+Pre svega nas je zanimalo ponašanje \textit{C-50} algoritma. Dobijene su matrice konfuzije prikazane na \ref{fig:MatricaKnfuzijeC50}.
+
+\begin{figure}[H]
+	\begin{subfigure}[h]{0.40\textwidth}
+		\begin{center}
+			\includegraphics[scale=0.55]{Klasifikacija/C50/Analysis_Surface2005.png}
+		\end{center}
+		\caption{2005.godina}
+		\label{fig:MatricaKnfuzijeC502005}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[h]{0.40\textwidth}
+		\begin{center}
+			\includegraphics[scale=0.50]{Klasifikacija/C50/Analysis_Surface2008.png}
+		\end{center}
+		\caption{2008.godina}
+		\label{fig:MatricaKnfuzijeC502008}
+	\end{subfigure}
+	
+	\vspace{0.5cm}
+	\begin{subfigure}[h]{\textwidth}
+		\begin{center}
+			\includegraphics[scale=0.50]{Klasifikacija/C50/Analysis_Surface2015.png}
+		\end{center}
+		\caption{2015.godina}
+		\label{fig:MatricaKnfuzijeC502015}
+	\end{subfigure}
+	
+	\caption{Matrica konfuzije C-50}
+	\label{fig:MatricaKnfuzijeC50}
+\end{figure}
+
+Prikaz najznačajnijih atributa može se videti na \ref{fig:ModelKlasifikacijaC50}, a detaljniji prikaz drveta odlučivanja: \href{file:./Klasifikacija/C50/Model_Surface2005.html}{2005}, \href{file:./Klasifikacija/C50/Model_Surface2008.html}{2008}, \href{file:./Klasifikacija/C50/Model_Surface2005.html}{2015}. 
+
+Sveobuhvatna analiza je data: \href{file:./Klasifikacija/C50/Summary_Surface2005.html}{2005}, \href{file:./Klasifikacija/C50/Summary_Surface2008.html}{2008}, \href{file:./Klasifikacija/C50/Summary_Surface2005.html}{2015}. 
+
+\begin{figure}[H]
+	\begin{subfigure}[h]{\textwidth}
+		\begin{center}
+			\includegraphics[scale=0.50]{Klasifikacija/C50/Model_Surface2005.png}
+		\end{center}
+		\caption{2005.godina}
+		\label{fig:ModelKlasifikacijaC502005}
+	\end{subfigure}
+	
+	\vspace{0.5cm}
+	\begin{subfigure}[h]{\textwidth}
+		\begin{center}
+			\includegraphics[scale=0.50]{Klasifikacija/C50/Model_Surface2008.png}
+		\end{center}
+		\caption{2008.godina}
+		\label{fig:ModelKlasifikacijaC502008}
+	\end{subfigure}
+	
+	\vspace{0.5cm}
+	\begin{subfigure}[h]{\textwidth}
+		\begin{center}
+			\includegraphics[scale=0.50]{Klasifikacija/C50/Model_Surface2015.png}
+		\end{center}
+		\caption{2015.godina}
+		\label{fig:ModelKlasifikacijaC502015}
+	\end{subfigure}
+	
+	\caption{Matrica konfuzije C-50}
+	\label{fig:ModelKlasifikacijaC50}
+\end{figure}
 
 \end{document}
