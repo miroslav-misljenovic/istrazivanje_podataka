@@ -146,13 +146,13 @@ Odlučili smo se za 2009. godinu, jer su rezultati reprezentativniji u odnosu na
 
 Na slikama \ref{fig:histogram} i \ref{fig:parallel} grafički su prikazani rezultati za sedam
 tenisera koji su imali prosečno najviše asova po meču na kome su pobedili. Izabrali smo četiri parametra za svakog igrača:
-broj asova pobednika, broj dobijenih poena na servis pobednika, procenat ubačenog prvog servisa pobednika i
+broj asova pobednika, broj dobijenih poena na servis pobednika, broj ubačenih prvih servisa pobednika i
 broj osvojenih poena nakon ubačenog prvog servisa pobednika. Na histogramu i grafiku paralelnih koordinata 
 mogu se videti i uporediti rezultati.
 
 \begin{figure}[H]
 	\begin{center}
-		\includegraphics[scale=0.25]{KNIME_project/PravilaPridruzivanja/histogram2009}
+		\includegraphics[scale=0.22]{KNIME_project/PravilaPridruzivanja/histogram2009}
 	\end{center}
 	\caption{Histogram}
 	\label{fig:histogram}
@@ -193,6 +193,97 @@ U 2004. godini smo dobili najveću vrednost Lift mere (1.441) za pravilo [BPS 1,
 \section{Klasterovanje}
 
 \section{Klasifikacija}
+
+\subsection{Klasifikacija u alatu KNIME - SVM}
+
+Klasifikaciju smo vršili na četiri normalizovana atributa: broj asova gubitnika, broj duplih servis grešaka gubitnika,
+broj ubačenih prvih servisa gubitnika, broj brejk šansi na servis gubitnika. Ispitivana je zavisnost ovih atributa u odnosu 
+na podlogu na kojoj se igra meč.  \\
+
+Vršili smo klasifikaciju tehnikom SVM. Normalizovane podatke smo podelili na trening i test skup u odnosu 70-30.
+Primenili smo sva tri raspoloživa kernela (polinomijalni trećeg stepena, sigmoid, Gausov(RBF)).
+Na slici \ref{fig:precision} se mogu videti preciznosti za sva tri kernela, i za trening i za test skup.
+
+\begin{figure}[h!]
+	\begin{center}
+		\includegraphics[scale=0.42]{KNIME_project/SVM/preciznost}
+	\end{center}
+	\caption{Preciznost za različite kernele}
+	\label{fig:precision}
+\end{figure}
+
+
+Koristeći polinomijalni kernel trećeg stepena, dobili smo izuzetno loše rezultate.
+Naime, skoro 50\% redova (1501 od 3257) odgovaraju mečevima koji su odigrani na tvrdoj podlozi.
+Na slikama \ref{fig:poly_training} i \ref{fig:poly_test} vidimo da su podaci pogrešno klasifikovani u
+mečeve koji su odigrani na šljaci.
+
+\begin{figure}[h!]
+	\begin{center}
+		\includegraphics[scale=0.6]{KNIME_project/SVM/poly_training}
+	\end{center}
+	\caption{Trening podaci za polinomijalni kernel}
+	\label{fig:poly_training}
+\end{figure}
+
+\begin{figure}[h!]
+	\begin{center}
+		\includegraphics[scale=0.6]{KNIME_project/SVM/poly_test}
+	\end{center}
+	\caption{Test podaci za polinomijalni kernel}
+	\label{fig:poly_test}
+\end{figure}
+
+%\newpage
+
+Koristeći sigmoid kernel, situacija se promenila utoliko što su podaci vezani za tvrdu podlogu
+vrlo dobro klasifikovani, što se može videti na slikama \ref{fig:sigmoid_training} i \ref{fig:sigmoid_test}.
+Primetimo da su podaci uglavnom raspoređeni u klase koje se odnose na beton i šljaku.
+
+\begin{figure}[h!]
+	\begin{center}
+		\includegraphics[scale=0.6]{KNIME_project/SVM/sigmoid_training}
+	\end{center}
+	\caption{Trening podaci za sigmoid kernel}
+	\label{fig:sigmoid_training}
+\end{figure}
+
+\begin{figure}[h!]
+	\begin{center}
+		\includegraphics[scale=0.6]{KNIME_project/SVM/sigmoid_test}
+	\end{center}
+	\caption{Test podaci za sigmoid kernel}
+	\label{fig:sigmoid_test}
+\end{figure}
+
+Koristeći Gausov kernel, dobili smo lošiju klasifikaciju za tvrdu podlogu, dosta bolju klasifikaciju za šljaku
+i malo bolju klasifikaciju za travu (slike \ref{fig:rbf_training} i \ref{fig:rbf_test}). \\
+
+\begin{figure}[h!]
+	\begin{center}
+		\includegraphics[scale=0.6]{KNIME_project/SVM/rbf_training}
+	\end{center}
+	\caption{Trening podaci za Gausov kernel}
+	\label{fig:rbf_training}
+\end{figure}
+
+\begin{figure}[h!]
+\begin{center}
+	\includegraphics[scale=0.6]{KNIME_project/SVM/rbf_test}
+\end{center}
+\caption{Test podaci za Gausov kernel}
+\label{fig:rbf_test}
+\end{figure}
+
+%\newpage
+
+U svim slučajevima, klasifikacija koja se odnosi na tepih je davala nulu. Moguće objašnjenje je činjenica da 10\% podataka
+za igranje na tepihu sadrži mnogo kolona sa nedostajućim vrednostima. Potrebna je detaljnija analiza za objašnjenje ovog rezultata klasifikacije,
+koja prevazilazi potrebe ovog rada.
+
+	
+
+
 
 %Predikat se naziva ekzistencijalan ako se pojavljuje samo u telima pravila (desna strana pravila), inače (ako se pojavljuje bar jednom u glavi pravila) naziva se intenzivan. Skup egzistencijalnih i intenzivnih predikata programa P označava se $ edb(P) $ i $ idb(P) $, respektivno.
 %

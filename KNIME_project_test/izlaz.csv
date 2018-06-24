@@ -1,2 +1,2 @@
-Acc_Training_Poly,Acc_Test_Poly,Acc_Training_Sigmoid,Acc_Test_Sigmoid,Acc_Training_RBF,Acc_Test_RBF
-0.507678806,0.505112474,0.56682243,0.566448802,0.563551402,0.567538126
+"Acc_Training_Poly","Acc_Test_Poly","Acc_Training_Sigmoid","Acc_Test_Sigmoid","Acc_Training_RBF","Acc_Test_RBF"
+0.35541904344010533,0.35173824130879344,0.4923211935059236,0.5,0.48222904782799475,0.4601226993865031
