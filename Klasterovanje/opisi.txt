@@ -1,0 +1,7 @@
+za 2003 SPSS silueta nam je i za 4 i za 5 klastera pokazala kvalitet klasterovanja "good". Takodje i sa 4 klastera i sa 5 klastera vaznost atributa w_age = 1, a w_ace = 1. Posmatrajuci u KNIME-u vizuelno smatramo da je sa 4 klastera najbolje.
+
+za 2011 SPSS silueta nam je za 5 klastera pokazala da nam je kvalitet klasterovanja "fair" , promenivsi broj klastera na 4 silueta je malo iznad granice "good", zato smo se odlucili da stavimo 4 klastera za 2011 godinu. Takodje i sa 4 klastera i sa 5 klastera vaznost atributa w_age = 1, a w_ace = 1.
+
+za 2017 SPSS silueta nam je za 4 klastera pokazala da nam je kvalitet klasterovanja "fair" , promenivsi broj klastera na 5 silueta je na granici "fair" - "good", tj prosek joj je 0.5, zato smo se odlucili da stavimo 5 klastera za 2017 godinu. Takodje sa 4 klastera vaznost atributa w_age = 1, a w_ace 0.77 , dok je sa 5 klastera w_ace = 0.46.
+
+Kohonen je u sve tri godine dao lose rezultate za klasterovanje.
