@@ -208,15 +208,16 @@ U alatu SPSS smo pomoću siluete pratili kako nam se kvalitet klasterovanja razl
 \textit{Kohonen} algoritam nam je za broj klastera između 3 i 5 davao ˝osrednji˝ kvalitet klasterovanja, pa ga nismo detaljno razmatrali. {\color{red} (Podseti me da probam sa nekim drugim ulaznim argumentima za Kohonena i da napisem ovde za koje smo probali.)} S druge strane, \textit{K-Means} algoritam nam je davao dosta raznolike ocene klastera po godinama. 2003. godina nam je za 4 i 5 klastera pokazala kvalitet klasterovanja  ˝dobar˝, uz važnost atributa \textit{w\_age = 1} i \textit{w\_ace = 1}. U 2011. godini nam je za 5 klastera silueta pokazivala kvalitet ˝osrednji˝, promenivši broj klastera na 4 silueta je prešla u ˝dobar˝. Takođe, i sa 4 klastera i sa 5 klastera važnost atributa \textit{w\_age = 1} i \textit{w\_ace = 1}. Rezultati za 2017. godinu za 4 klastera pokazuju kvalitet ˝osrednji˝; promenivši broj klastera na 5, silueta je na granici ˝osrednji˝-˝dobar˝, međutim, važnost atributa sa 4 klastera je \textit{w\_age = 1}, \textit{w\_ace = 0.77}, dok je sa 5 klastera \textit{w\_ace} opao na 0.46. Ipak smo odlučili da 2017. godinu odbradimo sa 5 klastera. Konačno, odlučili smo se za broj i kvalitet klastera koji su prikazani na slici \ref{Siluete}.
 
 \begin{figure}[H]
-	\begin{subfigure}[h]{0.45\textwidth}
+	\begin{subfigure}[h]{\textwidth}
 		\begin{center}
 			\includegraphics[scale=0.50]{Klasterovanje/Model_KMeans2003_Silhouette.png}
 		\end{center}
 		\caption{2003. godina}
 		\label{fig:SPSS_Silueta2003}
 	\end{subfigure}
-	\hfill
-	\begin{subfigure}[h]{0.45\textwidth}
+
+	\vspace{0.5cm}
+	\begin{subfigure}[h]{\textwidth}
 		\begin{center}
 			\includegraphics[scale=0.50]{Klasterovanje/Model_KMeans2011_Silhouette.png}
 		\end{center}
@@ -224,7 +225,7 @@ U alatu SPSS smo pomoću siluete pratili kako nam se kvalitet klasterovanja razl
 		\label{fig:SPSS_Silueta2011}
 	\end{subfigure}
 	
-	\vspace{1cm}
+	\vspace{0.5cm}
 	\begin{subfigure}[h]{\textwidth}
 		\begin{center}
 			\includegraphics[scale=0.50]{Klasterovanje/Model_KMeans2017_Silhouette.png}
@@ -248,7 +249,7 @@ Kao što se vidi na slici \ref{ModeliKlastera}, u sve tri godine su dobijeni int
 		\label{fig:SPSS_Model2003}
 	\end{subfigure}
 	
-	\vspace{1cm}
+	\vspace{0.5cm}
 	\begin{subfigure}[h]{\textwidth}
 		\begin{center}
 			\includegraphics[scale=0.50]{Klasterovanje/Model_KMeans2011.png}
@@ -257,7 +258,7 @@ Kao što se vidi na slici \ref{ModeliKlastera}, u sve tri godine su dobijeni int
 		\label{fig:SPSS_Model2011}
 	\end{subfigure}
 	
-	\vspace{1cm}
+	\vspace{0.5cm}
 	\begin{subfigure}[h]{\textwidth}
 		\begin{center}
 			\includegraphics[scale=0.50]{Klasterovanje/Model_KMeans2017.png}
@@ -348,27 +349,24 @@ Možemo primetiti da stvarno postoje elementi van granica koji su uticali na to 
 	\label{fig:IgraciAutlajeri}
 \end{figure} 
 
-Najinteresantiji je definitivno Ivo Karlović, koji je na meču protiv Orasia Zebaljosa na Australian Open-u postigao 75 asova. Treba imati na umu da je Karlović odigrao četiri meča na ovom turniru. Moramo napomenuti, da je skup podataka o 2017. godini nepotpun, jer je u toku te godine napravljen skup i da dosta turnira još uvek nije upisano. Trenutni skup ima samo podatke sa turnira odigranih u januaru i februaru. {\color{green} prevereno!}  
+Najinteresantiji je definitivno Ivo Karlović, koji je na meču protiv Orasia Zebaljosa na Australian Open-u postigao 75 asova. Treba imati na umu da je Karlović odigrao četiri meča na ovom turniru. Moramo napomenuti, da je skup podataka o 2017. godini nepotpun, jer je u toku te godine napravljen skup i da dosta turnira još uvek nije upisano. Trenutni skup ima samo podatke sa turnira odigranih u januaru i februaru.  
 
 
 \section{Klasifikacija}
 
-Za klasifikaciju smo odlučili da nam klase budu podloge terena, a pripadnost svakoj klasi se određuje na osnovu karakteristika gubitnika meča.  {\color{red}{Možda i ovde da probamo da grupišemo prvo po podlogama, pa pripadnost da gađamo na osnovu proseka?}} Kao i kod klasterovanja i ovde smo želeli da vidimo šta se dešava u više godina. S obzirom na to da su neke podloge prisutnije u odnosu na ostale, godine za klasterovanje smo izabrali što ravnomernije. Nakon detaljne analize raspodele podloga po turnirima, odlučili smo se za 2005., 2008. i 2015. godinu. Razlog što smo odabrali baš ove godine jeste polako gubljenje ˝tepiha˝ kao podloge (slika \ref{fig:Podloga}), pa nas je zanimalo kako će ova činjenica uticati na sam proces klasifikacije. 
-
-{\color{green}Klasifikaciju smo vršili na četiri normalizovana atributa: broj asova gubitnika, broj duplih servis grešaka gubitnika,
-broj ubačenih prvih servisa gubitnika, broj brejk šansi na servis gubitnika. Ispitivana je zavisnost ovih atributa u odnosu 
-na podlogu na kojoj se igra meč.}  {\color{red} Trebalo bi da uskladimo atribute koje koristimo za klasifikaciju, ja sam u SPSS sve gubitnikove karakteritike stavila.} 
+Za klasifikaciju smo odlučili da nam klase budu podloge terena, a pripadnost svakoj klasi se određuje na osnovu karakteristika četiri gubitnikova atributa (broj asova gubitnika, broj duplih servis grešaka gubitnika, broj ubačenih prvih servisa gubitnika, broj brejk šansi na servis gubitnika). Kao i kod klasterovanja i ovde smo želeli da vidimo šta se dešava u više godina. S obzirom na to da su neke podloge prisutnije u odnosu na ostale. Nakon detaljne analize raspodele podloga, odlučili smo se za 2005., 2008. i 2015. godinu. Razlog što smo odabrali baš ove godine jeste polako gubljenje ˝tepiha˝ kao podloge (slika \ref{fig:Podloga}), pa nas je zanimalo kako će ova činjenica uticati na sam proces klasifikacije. 
 
 \begin{figure}[H]
-	\begin{subfigure}[h]{0.35\textwidth}
+	\begin{subfigure}[h]{\textwidth}
 		\begin{center}
 			\includegraphics[scale=0.30]{Klasifikacija/HistogramiPodlogaTerena/Graphboard2005.png}
 		\end{center}
 		\caption{2005. godina}
 		\label{fig:Podloga2005}
 	\end{subfigure}
-	\hspace{1.5cm}
-	\begin{subfigure}[h]{0.35\textwidth}
+
+	\vspace{0.5cm}
+	\begin{subfigure}[h]{\textwidth}
 		\begin{center}
 			\includegraphics[scale=0.30]{Klasifikacija/HistogramiPodlogaTerena/Graphboard2008.png}
 		\end{center}
@@ -390,7 +388,222 @@ na podlogu na kojoj se igra meč.}  {\color{red} Trebalo bi da uskladimo atribut
 
 Klasifikaciju smo, takođe, obradili u SPSS-u i u KNIME-u. (slike \ref{fig:SPSS_CvoroviKlasifikacija} i \ref{fig:KNIME_CvoroviKlasifikacija}).
 
+\subsection{SPSS}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[scale=0.60]{Klasifikacija/C50/SPSS_C50_Surface.png}
+	\end{center}
+	\caption{SPSS klastifikacija}
+	\label{fig:SPSS_CvoroviKlasifikacija}
+\end{figure}
+
+Primenili smo \textit{C5.0} algoritam sa podelom na trening i test skup u odnosu 70-30. Na slici \ref{fig:ModelKlasifikacijaC50} možemo videti analizu najvažnijjih atributa. Najvažniji atribut je u sve tri godine broj asova, ono što je interesantno jeste da je u 2008. godini važnost ˝broja duplih grešaka˝ nešto malo iznad nule {\color{red}Nađi tačan broj}, a u 2015. godini uopšte nije ni uzet u razmatranje.
+
+\begin{figure}[H]
+	\begin{subfigure}[h]{\textwidth}
+		\begin{center}
+			\includegraphics[scale=0.50]{Klasifikacija/C50/Model_Surface2005.png}
+		\end{center}
+		\caption{2005. godina}
+		\label{fig:ModelKlasifikacijaC502005}
+	\end{subfigure}
+	
+	\vspace{0.5cm}
+	\begin{subfigure}[h]{\textwidth}
+		\begin{center}
+			\includegraphics[scale=0.50]{Klasifikacija/C50/Model_Surface2008.png}
+		\end{center}
+		\caption{2008. godina}
+		\label{fig:ModelKlasifikacijaC502008}
+	\end{subfigure}
+	
+	\vspace{0.5cm}
+	\begin{subfigure}[h]{\textwidth}
+		\begin{center}
+			\includegraphics[scale=0.50]{Klasifikacija/C50/Model_Surface2015.png}
+		\end{center}
+		\caption{2015. godina}
+		\label{fig:ModelKlasifikacijaC502015}
+	\end{subfigure}
+	
+	\caption{Model klasifikacije}
+	\label{fig:ModelKlasifikacijaC50}
+\end{figure}
+
+Drveta odlučivanja smo delom mogli da vidimo i na prethodnoj slici, a detaljniji prikaz se može pogledati: \href{file:./Klasifikacija/C50/Model_Surface2005.html}{2005}, \href{file:./Klasifikacija/C50/Model_Surface2008.html}{2008}, \href{file:./Klasifikacija/C50/Model_Surface2005.html}{2015}. 
+
+Intuitivan prikaz drveta odlučivanja za 2005. i 2008. godinu, i kompletan prikaz 2015.godine može se videti na slici \ref{fig:DrvoOdlucivanjaC50}.
+
+\begin{figure}[H]
+	\begin{subfigure}[h]{\textwidth}
+		\begin{center}
+			\includegraphics[scale=0.35]{Klasifikacija/C50/MapaDrvetaOdlucivanja2005.png}
+		\end{center}
+		\caption{2005. godina}
+		\label{fig:DrvoOdlucivanjaC502005}
+	\end{subfigure}
+
+	\vspace{0.5cm}
+	\begin{subfigure}[h]{\textwidth}
+		\begin{center}
+			\includegraphics[scale=0.50]{Klasifikacija/C50/MapaDrvetaOdlucivanja2008.png}
+		\end{center}
+		\caption{2008. godina}
+		\label{fig:DrvoOdlucivanjaC502008}
+	\end{subfigure}
+	
+	\vspace{0.5cm}
+	\begin{subfigure}[h]{\textwidth}
+		\begin{center}
+			\includegraphics[scale=0.60]{Klasifikacija/C50/MapaDrvetaOdlucivanja2015.png}
+		\end{center}
+		\caption{2015. godina}
+		\label{fig:DrvoOdlucivanjaC502015}
+	\end{subfigure}
+	
+	\caption{Drveta odlučivanja C-5.0}
+	\label{fig:DrvoOdlucivanjaC50}
+\end{figure}
+
+Kao što možemo da vidimo da su drveta iz 2005 i 2008 ogromna, dok je {\color{red}Ovo iz 2015 bi mogli da izanaliziramo...}
+
+Dobijena preciznost, a i matrica konfuzije su prikazane na slici \ref{fig:MatricaKnfuzijeC50}.
+
+\begin{figure}[H]
+	\begin{subfigure}[h]{\textwidth}
+		\begin{center}
+			\includegraphics[scale=0.50]{Klasifikacija/C50/Analysis_Surface2005.png}
+		\end{center}
+		\caption{2005. godina}
+		\label{fig:MatricaKnfuzijeC502005}
+	\end{subfigure}
+
+	\vspace{0.5cm}
+	\begin{subfigure}[h]{\textwidth}
+		\begin{center}
+			\includegraphics[scale=0.45]{Klasifikacija/C50/Analysis_Surface2008.png}
+		\end{center}
+		\caption{2008. godina}
+		\label{fig:MatricaKnfuzijeC502008}
+	\end{subfigure}
+	
+	\begin{subfigure}[h]{\textwidth}
+		\begin{center}
+			\includegraphics[scale=0.50]{Klasifikacija/C50/Analysis_Surface2015.png}
+		\end{center}
+		\caption{2015. godina}
+		\label{fig:MatricaKnfuzijeC502015}
+	\end{subfigure}
+	
+	\caption{Matrice konfuzije - C5.0}
+	\label{fig:MatricaKnfuzijeC50}
+\end{figure}
+
+Možemo da primetimo da se ˝tepih˝ klasifikuje kao ˝beton˝, što je i očekivano s obzirom na odnos turinara odigranih na ova dva turnira. Takođe treba primetiti da se i ˝trava˝ u 2015. godini gotovo uvek klasifikuje kao ˝beton˝, a nikad kao ˝trava˝. Možemo da primetimo i da nam je preciznost zajedno sa godinama postepeno rasla, ali nismo baš zadovoljni dobijenim rezultatima pa smo odlučili da ispitamo metodu Drveta odlučivanja i u KNIME-u. 
+
+Sveobuhvatni prikaz rada algoritma C5.0 dat je u fajlovima: \href{file:./Klasifikacija/C50/Summary_Surface2005.html}{2005}, \href{file:./Klasifikacija/C50/Summary_Surface2008.html}{2008}, \href{file:./Klasifikacija/C50/Summary_Surface2005.html}{2015}.  
+
+S obzirom da su nam dobijeni rezultati algoritma C-5.0 dosta šarenoliki, i dobijena preciznost i veličina drveta odlučivanja nam deluju kao da se desilo preprilagođavanje odlučili smo da na godine 2005 i 2015 izvršimo istu analizu u alatu KNIME.
+
 \subsection{KNIME}
+
+U alatu  KNIME smo za klasifikaciju koristili Drveta odlučivanja, K najbližih suseda i metod potpornih vektora (SVM)
+
+\subsubsection{Drveta odlučivanja}
+
+\begin{figure}[h!]
+	\begin{center}
+		\includegraphics[scale=0.45]{Klasifikacija/DrvoOdlucivanja/KNIME_DrvoOdlucivanjaCvorovi.png}
+	\end{center}
+	\caption{KNIME implementacija tehnike Drvo odlučivanja}
+	\label{fig:KNIME_CvoroviKlasifikacija}
+\end{figure}
+
+Pre same klasifikacije na slici \ref{fig:KlasifikacijaScatterMatrix} je prikazan je odnos između atributa klasterovanja.
+
+\begin{figure}[H]
+	\begin{subfigure}[h]{\textwidth}
+		\begin{center}
+			\includegraphics[scale=0.45]{Klasifikacija/DrvoOdlucivanja/2005/Korelacija.png}
+		\end{center}
+		\caption{2005. godina}
+		\label{fig:KlasifikacijaScatterMatrix2005}
+	\end{subfigure}
+	
+	\vspace{0.5cm}
+	\begin{subfigure}[h]{\textwidth}
+		\begin{center}
+			\includegraphics[scale=0.45]{Klasifikacija/DrvoOdlucivanja/2015/Korelacija.png}
+		\end{center}
+		\caption{2008. godina}
+		\label{fig:KlasifikacijaScatterMatrix2015}
+	\end{subfigure}
+	
+	\caption{Korelacija atributa}
+	\label{fig:KlasifikacijaScatterMatrix}
+\end{figure}
+
+Dobijena preciznost, a i matrica konfuzije su prikazane na slikama \ref{fig:MatricaKnfuzije2005} i \ref{fig:MatricaKnfuzije2015}.
+
+\begin{figure}[H]
+	\begin{subfigure}[h]{\textwidth}
+		\begin{center}
+			\includegraphics[scale=0.60]{Klasifikacija/DrvoOdlucivanja/2005/MatricaKonfuzijeTrening.png}
+		\end{center}
+		\label{fig:MatricaKnfuzijeTrening2005}
+	\end{subfigure}
+
+	\vspace{0.5cm}
+	\begin{subfigure}[h]{\textwidth}
+		\begin{center}
+			\includegraphics[scale=0.60]{Klasifikacija/DrvoOdlucivanja/2005/MatricaKonfuzijeTest.png}
+		\end{center}
+		\label{fig:MatricaKnfuzijeTest2005}
+	\end{subfigure}
+	\caption{Matrice konfuzije - 2005}
+	\label{fig:MatricaKnfuzije2005}
+\end{figure}
+
+\begin{figure}[H]
+	\begin{subfigure}[h]{\textwidth}
+		\begin{center}
+			\includegraphics[scale=0.60]{Klasifikacija/DrvoOdlucivanja/2015/MatricaKonfuzijeTrening.png}
+		\end{center}
+		\label{fig:MatricaKnfuzijeTrening2015}
+	\end{subfigure}
+
+	\vspace{0.5cm}
+	\begin{subfigure}[h]{\textwidth}
+		\begin{center}
+			\includegraphics[scale=0.60]{Klasifikacija/DrvoOdlucivanja/2015/MatricaKonfuzijeTest.png}
+		\end{center}
+		\label{fig:MatricaKnfuzijeTest2015}
+	\end{subfigure}
+	\caption{Matrice konfuzije - 2015}
+	\label{fig:MatricaKnfuzije2015}
+\end{figure}
+\begin{figure}
+	\begin{subfigure}[h]{\textwidth}
+		\begin{center}
+			\includegraphics[scale=0.75]{Klasifikacija/DrvoOdlucivanja/2005/Preciznost.png}
+		\end{center}
+		\caption{2005. godina}
+		\label{fig:Preciznost2005}
+	\end{subfigure}
+
+	\vspace{0.5cm}
+	\begin{subfigure}[h]{\textwidth}
+		\begin{center}
+			\includegraphics[scale=0.75]{Klasifikacija/DrvoOdlucivanja/2015/Preciznost.png}
+		\end{center}
+		\caption{2015. godina}
+		\label{fig:Preciznost2015}
+	\end{subfigure}
+	
+	\caption{Preciznost}
+	\label{fig:PreciznostKNIME}
+\end{figure}
 
 \subsubsection{SVM}
 
@@ -478,83 +691,5 @@ i malo bolju klasifikaciju za travu (slike \ref{fig:rbf_training} i \ref{fig:rbf
 \end{figure}
 
 Prikazani rezultati su za 2005. godinu i, kako je u svim slučajevima klasifikacija koja se odnosila na tepih davala nulu, slični rezultati su očekivani i za 2008. godinu. Stoga nismo obrađivali ostale godine \textit{SVM} metodom, već smo pokušali da obradimo podatke algoritmom \textit{C5.0} u SPSS-u.
-
-\subsection{SPSS}
-
-\begin{figure}[H]
-	\begin{center}
-		\includegraphics[scale=0.60]{Klasifikacija/C50/SPSS_C50_Surface.png}
-	\end{center}
-	\caption{SPSS klastifikacija}
-	\label{fig:SPSS_CvoroviKlasifikacija}
-\end{figure}
-
-Primenili smo \textit{C5.0} algoritam sa podelom na trening i test skup u odnosu 70-30 i dobili smo neočekivane matrice konfuzije koje su prikazane na slici \ref{fig:MatricaKnfuzijeC50}.
-
-\begin{figure}[H]
-	\begin{subfigure}[h]{0.35\textwidth}
-		\begin{center}
-			\includegraphics[scale=0.50]{Klasifikacija/C50/Analysis_Surface2005.png}
-		\end{center}
-		\caption{2005. godina}
-		\label{fig:MatricaKnfuzijeC502005}
-	\end{subfigure}
-	\hspace{2.5cm}
-	\begin{subfigure}[h]{0.35\textwidth}
-		\begin{center}
-			\includegraphics[scale=0.45]{Klasifikacija/C50/Analysis_Surface2008.png}
-		\end{center}
-		\caption{2008. godina}
-		\label{fig:MatricaKnfuzijeC502008}
-	\end{subfigure}
-	
-	\begin{subfigure}[h]{\textwidth}
-		\begin{center}
-			\includegraphics[scale=0.50]{Klasifikacija/C50/Analysis_Surface2015.png}
-		\end{center}
-		\caption{2015. godina}
-		\label{fig:MatricaKnfuzijeC502015}
-	\end{subfigure}
-	
-	\caption{Matrice konfuzije - C5.0}
-	\label{fig:MatricaKnfuzijeC50}
-\end{figure}
-
-U 2005. godini, za razliku od \textit{SVM} metode, podloga ˝tepih˝ se na trening skupu klasifikovala dobro u 102 slučaja, dok u ostalim pretežno bira ˝beton˝ ili ˝šljaku˝. Situacija na test skupu je raznolika, uz dominaciju ˝betona˝ i ˝šljake˝. Takođe, možemo da primetimo da nam je preciznost klasifikacije test skupa jako loša, tj. 57.21\% podataka se pogrešno klasifikovalo, dok je trening skup pokazao 24.51\% loše klasifikovanih. U ostalim godinama možemo videti da, kako se ˝tepih˝ gubi to se i smanjuje procenat pogrešno klasifikovanih podloga, ali opet uz glavnu dominaciju ˝beton˝ podloge. U 2015. godini gotovo sve podloge na test skupu su pretežno klasifikovane u ˝beton˝, što je i očekivano s obzirom da se najviše turnira igra upravo na ˝betonu˝.
-
-\textit{C5.0} nam je dao i prikaz najznačajnijih atributa, kao i drvo odlučivanja. Prikaz najznačajnijih atributa je dat na slici \ref{fig:ModelKlasifikacijaC50}, a detaljniji prikaz drveta odlučivanja: \href{file:./Klasifikacija/C50/Model_Surface2005.html}{2005}, \href{file:./Klasifikacija/C50/Model_Surface2008.html}{2008}, \href{file:./Klasifikacija/C50/Model_Surface2005.html}{2015}.  
-
-Sveobuhvatni prikaz rada algoritma C5.0 dat je u fajlovima: \href{file:./Klasifikacija/C50/Summary_Surface2005.html}{2005}, \href{file:./Klasifikacija/C50/Summary_Surface2008.html}{2008}, \href{file:./Klasifikacija/C50/Summary_Surface2005.html}{2015}.  
-
-\begin{figure}[H]
-	\begin{subfigure}[h]{\textwidth}
-		\begin{center}
-			\includegraphics[scale=0.50]{Klasifikacija/C50/Model_Surface2005.png}
-		\end{center}
-		\caption{2005. godina}
-		\label{fig:ModelKlasifikacijaC502005}
-	\end{subfigure}
-	
-	\vspace{0.5cm}
-	\begin{subfigure}[h]{\textwidth}
-		\begin{center}
-			\includegraphics[scale=0.50]{Klasifikacija/C50/Model_Surface2008.png}
-		\end{center}
-		\caption{2008. godina}
-		\label{fig:ModelKlasifikacijaC502008}
-	\end{subfigure}
-	
-	\vspace{0.5cm}
-	\begin{subfigure}[h]{\textwidth}
-		\begin{center}
-			\includegraphics[scale=0.50]{Klasifikacija/C50/Model_Surface2015.png}
-		\end{center}
-		\caption{2015. godina}
-		\label{fig:ModelKlasifikacijaC502015}
-	\end{subfigure}
-	
-	\caption{Matrice konfuzije - C5.0}
-	\label{fig:ModelKlasifikacijaC50}
-\end{figure}
 
 \end{document}
