@@ -37,6 +37,7 @@ U ovom radu analizirali smo skup podataka ˝ATP - rezultati turnira od 2000-2017
 
 \newpage
 
+\newgeometry{top=4.0cm}
 \section{Uvod}
 \label{sec:uvod}
 
@@ -46,8 +47,11 @@ Skup podataka ATP mečeva podeljen je u 17 zasebnih .csv fajlova i svaki od njih
 
 U ovom poglavlju sledi kratak pregled najistaknutijih atributa ovog skupa podataka.
 Svaki red u skupu, označava jedan meč i sve informacije o tom meču.
+
 U tabeli \ref{table:turnir} prikazani su podaci o turniru.
-\begin{table}[h]
+
+
+\begin{table}[H]
 	\begin{center}
 		\begin{tabular}{ | c | c | } 
 			\hline
@@ -67,7 +71,7 @@ U tabeli \ref{table:turnir} prikazani su podaci o turniru.
 \end{table}
 
 U tabeli \ref{table:pobednici} prikazani su podaci o pobedniku meča.
-\begin{table}
+\begin{table}[H]
 	\begin{center}
 		\begin{tabular}{ | c | c | } 
 			\hline
@@ -97,8 +101,9 @@ U tabeli \ref{table:pobednici} prikazani su podaci o pobedniku meča.
 	\label{table:pobednici}
 \end{table}
 
+\restoregeometry
 U tabeli \ref{table:gubitnici} prikazani su podaci o gubitniku meča.
-\begin{table}
+\begin{table}[H]
 	\begin{center}
 		\begin{tabular}{ | c | c | } 
 			\hline
@@ -177,7 +182,7 @@ Analizirali smo podatke za sve godine i rezultati su prilično uniformni. Za 200
 Lift mera (1.36) i odnosi se na pravilo [ACE 2, WON 2, DF 1] -> [BPS 1].
 U 2004. godini smo dobili najveću vrednost Lift mere (1.441) za pravilo [BPS 1, ACE 1, DF 1] -> [WON 1].
 
-
+\newgeometry{top=6.0cm}
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[width=1\textwidth]{PravilaPridruzivanja/rule_learner_2009}
@@ -190,6 +195,7 @@ U 2004. godini smo dobili najveću vrednost Lift mere (1.441) za pravilo [BPS 1,
 
 Što se tiče klasterovanja, s obzirom da podaci po godinama dosta osciliraju, odlučili smo da klasterovanje izvršimo za više godina. Izabrali smo 2003., 2011. i 2017. godinu. Pre svega, zanimala nas je zavisnost broja godina pobednika i broj asova pobednika. Prvo smo obradili nedostajuće vrednosti. Klasterovanje smo obradili u alatima SPSS i KNIME (slike \ref{fig:SPSS_CvoroviKlasterovanje} i \ref{fig:KNIME_CvoroviKlasterovanje}). 
 
+\restoregeometry
 \subsection{SPSS}
 
 \begin{figure}[H]
@@ -200,6 +206,7 @@ U 2004. godini smo dobili najveću vrednost Lift mere (1.441) za pravilo [BPS 1,
 	\label{fig:SPSS_CvoroviKlasterovanje}
 \end{figure}
 
+\newgeometry{top=5.0cm}
 U alatu SPSS smo pomoću siluete pratili kako nam se kvalitet klasterovanja razlikuje u zavisnosti od broja klastera. 
 \textit{Kohonen} algoritam nam je za broj klastera između 3 i 5 davao ˝osrednji˝ kvalitet klasterovanja, pa ga nismo detaljno razmatrali. S druge strane, \textit{K-Means} algoritam nam je davao dosta raznolike ocene klastera po godinama. 2003. godina nam je za 4 i 5 klastera pokazala kvalitet klasterovanja  ˝dobar˝, uz važnost atributa \textit{w\_age = 1} i \textit{w\_ace = 1}. U 2011. godini nam je za 5 klastera silueta pokazivala kvalitet ˝osrednji˝, promenivši broj klastera na 4 silueta je prešla u ˝dobar˝. Takođe, i sa 4 klastera i sa 5 klastera važnost atributa \textit{w\_age = 1} i \textit{w\_ace = 1}. Rezultati za 2017. godinu za 4 klastera pokazuju kvalitet ˝osrednji˝; promenivši broj klastera na 5, silueta je na granici ˝osrednji˝-˝dobar˝, međutim, važnost atributa sa 4 klastera je \textit{w\_age = 1}, \textit{w\_ace = 0.77}, dok je sa 5 klastera \textit{w\_ace} opao na 0.46. Ipak smo odlučili da 2017. godinu odbradimo sa 5 klastera. Konačno, odlučili smo se za broj i kvalitet klastera koji su prikazani na slikama \ref{fig:SPSS_Silueta2003}, \ref{fig:SPSS_Silueta2011} i \ref{fig:SPSS_Silueta2017}.
 
@@ -212,6 +219,7 @@ U alatu SPSS smo pomoću siluete pratili kako nam se kvalitet klasterovanja razl
 	\label{fig:SPSS_Silueta2003}
 \end{figure}
 
+\restoregeometry
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[width=0.7\textwidth]{Klasterovanje/Model_KMeans2011_Silhouette.png}
@@ -233,7 +241,7 @@ Kao što se vidi na slici \ref{ModeliKlastera}, u sve tri godine su dobijeni int
 \begin{figure}[H]
 	\begin{subfigure}[h]{\textwidth}
 		\begin{center}
-			\includegraphics[scale=0.50]{Klasterovanje/Model_KMeans2003.png}
+			\includegraphics[scale=0.60]{Klasterovanje/Model_KMeans2003.png}
 		\end{center}
 		\caption{2003. godina}
 		\label{fig:SPSS_Model2003}
@@ -242,7 +250,7 @@ Kao što se vidi na slici \ref{ModeliKlastera}, u sve tri godine su dobijeni int
 	\vspace{0.5cm}
 	\begin{subfigure}[h]{\textwidth}
 		\begin{center}
-			\includegraphics[scale=0.50]{Klasterovanje/Model_KMeans2011.png}
+			\includegraphics[scale=0.60]{Klasterovanje/Model_KMeans2011.png}
 		\end{center}
 		\caption{2011. godina}
 		\label{fig:SPSS_Model2011}
@@ -251,7 +259,7 @@ Kao što se vidi na slici \ref{ModeliKlastera}, u sve tri godine su dobijeni int
 	\vspace{0.5cm}
 	\begin{subfigure}[h]{\textwidth}
 		\begin{center}
-			\includegraphics[scale=0.50]{Klasterovanje/Model_KMeans2017.png}
+			\includegraphics[scale=0.60]{Klasterovanje/Model_KMeans2017.png}
 		\end{center}
 		\caption{2017. godina}
 		\label{fig:SPSS_Model2017}
@@ -344,6 +352,8 @@ Za klasifikaciju smo odlučili da nam klase budu podloge terena, a pripadnost sv
 	\caption{Podloga - 2005. godina}
 	\label{fig:Podloga2005}
 \end{figure}
+
+\newgeometry{top=5.5cm}
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[width=0.7\textwidth]{Klasifikacija/HistogramiPodlogaTerena/Graphboard2008.png}
@@ -361,6 +371,7 @@ Za klasifikaciju smo odlučili da nam klase budu podloge terena, a pripadnost sv
 
 Klasifikaciju smo, takođe, obradili u SPSS-u i u KNIME-u.
 
+\restoregeometry
 \subsection{SPSS}
 
 \begin{figure}[H]
@@ -373,10 +384,11 @@ Klasifikaciju smo, takođe, obradili u SPSS-u i u KNIME-u.
 
 Primenili smo \textit{C5.0} algoritam sa podelom na trening i test skup u odnosu 70-30. Na slici \ref{fig:ModelKlasifikacijaC50} možemo videti analizu najvažnijjih atributa. Najvažniji atribut u 2008. i 2015. godini je broj asova, dok u 2005. godini broj asova zauzima treće mesto po važnosti. Ono što je interesantno jeste da se u 2005. godini broj duplih servis grešaka smatra najvažnijim, dok se u 2008. i 2015. godini može videti da je važnost ovog atributa skoro nula, 0.03 i 0.09 respektivno.
 
+\newgeometry{top=5.0cm}
 \begin{figure}[H]
 	\begin{subfigure}[h]{\textwidth}
 		\begin{center}
-			\includegraphics[scale=0.50]{Klasifikacija/C50/Model_Surface2005.png}
+			\includegraphics[width=0.9\textwidth]{Klasifikacija/C50/Model_Surface2005.png}
 		\end{center}
 		\caption{2005. godina}
 		\label{fig:ModelKlasifikacijaC502005}
@@ -385,7 +397,7 @@ Primenili smo \textit{C5.0} algoritam sa podelom na trening i test skup u odnosu
 	\vspace{0.5cm}
 	\begin{subfigure}[h]{\textwidth}
 		\begin{center}
-			\includegraphics[scale=0.50]{Klasifikacija/C50/Model_Surface2008.png}
+			\includegraphics[width=0.9\textwidth]{Klasifikacija/C50/Model_Surface2008.png}
 		\end{center}
 		\caption{2008. godina}
 		\label{fig:ModelKlasifikacijaC502008}
@@ -394,7 +406,7 @@ Primenili smo \textit{C5.0} algoritam sa podelom na trening i test skup u odnosu
 	\vspace{0.5cm}
 	\begin{subfigure}[h]{\textwidth}
 		\begin{center}
-			\includegraphics[scale=0.50]{Klasifikacija/C50/Model_Surface2015.png}
+			\includegraphics[width=0.9\textwidth]{Klasifikacija/C50/Model_Surface2015.png}
 		\end{center}
 		\caption{2015. godina}
 		\label{fig:ModelKlasifikacijaC502015}
@@ -406,6 +418,7 @@ Primenili smo \textit{C5.0} algoritam sa podelom na trening i test skup u odnosu
 
 Neke segmente drveta odlučivanja smo mogli da vidimo i na prethodnoj slici, a detaljniji prikaz se može pogledati na sledećim linkovima: \href{file:./Klasifikacija/C50/Model_Surface2005.html}{2005}, \href{file:./Klasifikacija/C50/Model_Surface2008.html}{2008}, \href{file:./Klasifikacija/C50/Model_Surface2015.html}{2015}. 
 
+\restoregeometry
 Intuitivan prikaz drveta odlučivanja za sve godine se može videti na slici \ref{fig:DrvoOdlucivanjaC50}.
 
 \begin{figure}[H]
@@ -449,8 +462,7 @@ Kao što možemo da vidimo, drveta su veoma duboka i razgranata. Na slici \ref{f
 		\caption{2005. godina}
 		\label{fig:MatricaKnfuzijeC502005}
 	\end{subfigure}
-
-	\vspace{0.5cm}
+	\vspace{0.2cm}
 	\begin{subfigure}[h]{\textwidth}
 		\begin{center}
 			\includegraphics[width=0.7\textwidth]{Klasifikacija/C50/Analysis_Surface2008.png}
@@ -458,7 +470,7 @@ Kao što možemo da vidimo, drveta su veoma duboka i razgranata. Na slici \ref{f
 		\caption{2008. godina}
 		\label{fig:MatricaKnfuzijeC502008}
 	\end{subfigure}
-	
+	\vspace{0.2cm}
 	\begin{subfigure}[h]{\textwidth}
 		\begin{center}
 			\includegraphics[width=0.7\textwidth]{Klasifikacija/C50/Analysis_Surface2015.png}
@@ -466,11 +478,11 @@ Kao što možemo da vidimo, drveta su veoma duboka i razgranata. Na slici \ref{f
 		\caption{2015. godina}
 		\label{fig:MatricaKnfuzijeC502015}
 	\end{subfigure}
-	
 	\caption{Matrice konfuzije - C5.0}
 	\label{fig:MatricaKnfuzijeC50}
 \end{figure}
 
+\newgeometry{top=3.5cm}
 Možemo da primetimo da se ˝tepih˝ klasifikuje kao ˝beton˝, što je i očekivano s obzirom da se najviše turnira igra na betonu. 
 
 Sveobuhvatni prikaz rada algoritma \textit{C5.0} dat je u fajlovima: \href{file:./Klasifikacija/C50/Summary_Surface2005.html}{2005}, \href{file:./Klasifikacija/C50/Summary_Surface2008.html}{2008}, \href{file:./Klasifikacija/C50/Summary_Surface2005.html}{2015}.  
@@ -500,6 +512,7 @@ Pre same klasifikacije, na slikama \ref{fig:KlasifikacijaScatterMatrix2005} i \r
 	\caption{ Korelacija atributa - 2005. godina}
 	\label{fig:KlasifikacijaScatterMatrix2005}
 \end{figure}
+\restoregeometry
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[width=\textwidth]{Klasifikacija/DrvoOdlucivanja/2015/KorelacijaAsInSurface.png}
@@ -721,9 +734,10 @@ Primetimo da su podaci uglavnom raspoređeni u klase koje se odnose na beton, š
 Koristeći Gausov kernel, dobili smo lošiju klasifikaciju za tvrdu podlogu, dosta bolju klasifikaciju za šljaku, bolju klasifikaciju za travu, dok
 je tepih u potpunosti promašen (slike \ref{fig:rbf_training} i \ref{fig:rbf_test}).\\
 
+\newgeometry{top=10.0cm}
 \begin{figure}[H]
 	\begin{center}
-		\includegraphics[width=0.6\textwidth]{Klasifikacija/SVM/rbf_training}
+		\includegraphics[width=0.7\textwidth]{Klasifikacija/SVM/rbf_training}
 	\end{center}
 	\caption{Trening podaci za Gausov kernel}
 	\label{fig:rbf_training}
@@ -731,12 +745,12 @@ je tepih u potpunosti promašen (slike \ref{fig:rbf_training} i \ref{fig:rbf_tes
 
 \begin{figure}[H]
 \begin{center}
-	\includegraphics[width=0.6\textwidth]{Klasifikacija/SVM/rbf_test}
+	\includegraphics[width=0.7\textwidth]{Klasifikacija/SVM/rbf_test}
 \end{center}
 \caption{Test podaci za Gausov kernel}
 \label{fig:rbf_test}
 \end{figure}
 
-
+\restoregeometry
 
 \end{document}
